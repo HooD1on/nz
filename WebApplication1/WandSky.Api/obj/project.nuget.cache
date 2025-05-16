@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2cW5J53lVGI=",
+  "dgSpecHash": "j7wPKQ2NCgY=",
   "success": true,
-  "projectFilePath": "D:\\旅游软件\\WebApplication1\\WandSky.Api\\WandSky.Api.csproj",
+  "projectFilePath": "D:\\旅游软件\\nz\\WebApplication1\\WandSky.Api\\WandSky.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\whhd1\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\whhd1\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

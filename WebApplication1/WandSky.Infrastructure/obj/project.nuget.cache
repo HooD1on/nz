@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jxN5/nN6Uk8=",
+  "dgSpecHash": "OMCMsNETQ1U=",
   "success": true,
-  "projectFilePath": "D:\\旅游软件\\WebApplication1\\WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
+  "projectFilePath": "D:\\旅游软件\\nz\\WebApplication1\\WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\whhd1\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\whhd1\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
