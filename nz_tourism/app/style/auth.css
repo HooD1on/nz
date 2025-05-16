@@ -1,0 +1,287 @@
+/* 登录/注册页面样式 */
+body {
+    background-color: #f9f9f9;
+}
+
+/* 明确的auth页面导航栏类 */
+.auth-navbar {
+    background-color: #fff !important;
+    position: fixed !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+}
+
+.auth-navbar .logo img {
+    filter: none !important;
+}
+
+.auth-navbar .nav-links a {
+    color: #333 !important;
+}
+
+.auth-navbar .sign-in-btn {
+    background: #3498db !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* 原有样式保持不变 */
+.navbar {
+    background-color: #fff;
+    position: fixed;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar .logo img {
+    filter: none;
+}
+
+.nav-links a {
+    color: #333;
+}
+
+.nav-links a::after {
+    content: '▼';
+    font-size: 8px;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.sign-in-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+}
+
+.sign-in-btn.active {
+    background: #2980b9;
+}
+
+/* 主要内容区域 */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 50px;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+/* 标签切换 */
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-tab {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.auth-tab.active {
+    color: #3498db;
+    border-bottom: 3px solid #3498db;
+}
+
+/* 表单容器 */
+.auth-form-container {
+    padding: 30px;
+    display: none;
+}
+
+.auth-form-container.active {
+    display: block;
+}
+
+.auth-form-container h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.auth-subtitle {
+    color: #777;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* 表单样式 */
+.auth-form {
+    margin-bottom: 20px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field-group {
+    display: flex;
+    gap: 15px;
+}
+
+.form-field-group .form-field {
+    flex: 1;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    color: #3498db;
+    font-size: 12px;
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+.password-hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* 复选框样式 */
+.form-field.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-field.checkbox input {
+    margin-right: 10px;
+}
+
+.form-field.checkbox label {
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.form-field.checkbox a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* 按钮样式 */
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.auth-button:hover {
+    background: #2980b9;
+}
+
+/* 社交媒体登录 */
+.social-auth {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.social-auth p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.social-btn svg {
+    margin-right: 8px;
+}
+
+.social-btn.facebook {
+    color: #3b5998;
+    border-color: #3b5998;
+}
+
+.social-btn.facebook:hover {
+    background: #3b5998;
+    color: white;
+}
+
+.social-btn.google {
+    color: #db4437;
+    border-color: #db4437;
+}
+
+.social-btn.google:hover {
+    background: #db4437;
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+    .form-field-group {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .auth-form-container {
+        padding: 20px;
+    }
+    
+    .auth-tab {
+        padding: 15px 10px;
+    }
+}

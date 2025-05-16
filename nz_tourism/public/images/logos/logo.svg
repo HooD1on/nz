@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .logo-text { font-family: Arial, sans-serif; font-weight: bold; fill: #ffffff; }
+        .icon { fill: #ffffff; }
+    </style>
+    <g transform="translate(10,10)">
+        <path class="icon" d="M15,0 C23.2843,0 30,6.71573 30,15 C30,23.2843 23.2843,30 15,30 L10,30 L15,35 L15,30 C23.2843,30 30,23.2843 30,15 C30,6.71573 23.2843,0 15,0 Z"/>
+        <text x="40" y="22" class="logo-text" font-size="24">WandSky</text>
+    </g>
+</svg> 

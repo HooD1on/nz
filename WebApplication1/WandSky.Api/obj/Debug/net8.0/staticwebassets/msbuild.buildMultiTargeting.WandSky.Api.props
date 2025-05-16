@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WandSky.Api.props" />
+</Project>

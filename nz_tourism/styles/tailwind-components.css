@@ -1,0 +1,52 @@
+/* 这个文件专门用于Tailwind组件样式，可以被安全引入，不会被其他样式覆盖 */
+
+/* 搜索栏组件 */
+.tw-search-container {
+  @apply w-full max-w-xl mx-auto;
+}
+
+.tw-search-form {
+  @apply flex w-full;
+}
+
+.tw-search-input-container {
+  @apply relative flex-grow;
+}
+
+.tw-search-input {
+  @apply w-full px-4 py-2 pl-10 text-gray-900 bg-white border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none;
+}
+
+.tw-search-icon-container {
+  @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500;
+}
+
+.tw-search-button {
+  @apply flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-r-lg;
+}
+
+/* 按钮组件 */
+.tw-button-primary {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.tw-button-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded;
+}
+
+.tw-button-outline {
+  @apply border border-blue-500 text-blue-500 hover:bg-blue-50 px-4 py-2 rounded;
+}
+
+/* 卡片组件 */
+.tw-card {
+  @apply bg-white p-4 rounded shadow;
+}
+
+.tw-card-title {
+  @apply text-lg font-medium text-gray-900;
+}
+
+.tw-card-text {
+  @apply text-gray-500;
+} 

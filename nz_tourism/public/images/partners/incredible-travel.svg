@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.9">
+    <path d="M25 40C25 31.7157 31.7157 25 40 25C48.2843 25 55 31.7157 55 40" stroke="white" stroke-width="3"/>
+    <path d="M40 20L45 40L40 35L35 40L40 20Z" fill="white"/>
+    <text x="65" y="35" font-family="Arial" font-size="14" font-weight="bold" fill="white">INCREDIBLE</text>
+    <text x="65" y="50" font-family="Arial" font-size="14" font-weight="bold" fill="white">TRAVEL</text>
+  </g>
+</svg> 

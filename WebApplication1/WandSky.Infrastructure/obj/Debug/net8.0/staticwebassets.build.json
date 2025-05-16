@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "yGyxz3xMebte5ARaHf7qZ2l21F7kIoZ779eKLFOkCV8=",
+  "Source": "WandSky.Infrastructure",
+  "BasePath": "_content/WandSky.Infrastructure",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\旅游软件\\WebApplication1\\WandSky.Core\\WandSky.Core.csproj",
+      "Version": 2,
+      "Source": "WandSky.Core",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

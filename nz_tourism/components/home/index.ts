@@ -1,0 +1,10 @@
+export { default as HeroSection } from './HeroSection';
+export { default as Hero } from './Hero';
+export { default as Partners } from './Partners';
+export { default as PopularDestinations } from './PopularDestinations';
+export { default as Features } from './Features';
+export { default as SpecialPackages } from './SpecialPackages';
+export { default as QualityStats } from './QualityStats';
+export { default as Testimonials } from './Testimonials';
+export { default as FAQ } from './FAQ';
+export { default as Subscribe } from './Subscribe'; 

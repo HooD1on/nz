@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .partner-text { font-family: Arial, sans-serif; font-weight: bold; fill: #ffffff; }
+        .wave { stroke: white; fill: none; stroke-width: 2; }
+    </style>
+    <path class="wave" d="M20,10 L30,30 L40,10 L50,30 L60,10"/>
+    <text x="10" y="25" class="partner-text" font-size="12">WILD HOUSE</text>
+</svg> 

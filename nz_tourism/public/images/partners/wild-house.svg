@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.9">
+    <path d="M30 45V30L45 20L60 30V45H54V35H36V45H30Z" fill="white"/>
+    <path d="M42 25L48 25L45 22L42 25Z" fill="white"/>
+    <text x="70" y="42" font-family="Arial" font-size="18" font-weight="bold" fill="white">WILD HOUSE</text>
+  </g>
+</svg> 

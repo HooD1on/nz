@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.9">
+    <path d="M40 20C31.7157 20 25 26.7157 25 35C25 43.2843 31.7157 50 40 50C48.2843 50 55 43.2843 55 35C55 26.7157 48.2843 20 40 20ZM40 46C33.9249 46 29 41.0751 29 35C29 28.9249 33.9249 24 40 24C46.0751 24 51 28.9249 51 35C51 41.0751 46.0751 46 40 46Z" fill="white"/>
+    <path d="M40 28C36.6863 28 34 30.6863 34 34C34 37.3137 36.6863 40 40 40C43.3137 40 46 37.3137 46 34C46 30.6863 43.3137 28 40 28Z" fill="white"/>
+    <text x="70" y="42" font-family="Arial" font-size="18" font-weight="bold" fill="white">LOCAL GUIDES</text>
+  </g>
+</svg> 

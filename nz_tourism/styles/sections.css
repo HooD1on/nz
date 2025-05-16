@@ -1,0 +1,275 @@
+/* 通用部分样式 */
+.section {
+  padding: 4rem 0;
+}
+
+.section-light {
+  background-color: #ffffff;
+}
+
+.section-gray {
+  background-color: #f8f9fa;
+}
+
+.section-primary {
+  background-color: #f0f7ff;
+}
+
+/* FAQ部分样式 */
+.faq-section {
+  padding: 4rem 0;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-see-more {
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.faq-see-more-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #3182ce;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+.faq-see-more-link:hover {
+  background-color: #2c5282;
+}
+
+/* 目的地部分样式 */
+.destinations-section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.destinations-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* 特殊套餐部分样式 */
+.packages-section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.packages-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* 评价部分样式 */
+.testimonials-section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonials-see-more {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* 特色部分样式 */
+.features-section {
+  padding: 4rem 0;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* 订阅部分样式 */
+.subscribe-section {
+  padding: 4rem 0;
+  background-color: #f0f7ff;
+}
+
+.subscribe-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.subscribe-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.subscribe-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a202c;
+}
+
+.subscribe-description {
+  margin-bottom: 2rem;
+  color: #4a5568;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.benefit-icon {
+  margin-right: 0.75rem;
+  color: #3182ce;
+  flex-shrink: 0;
+}
+
+.benefit-text {
+  color: #4a5568;
+}
+
+.subscribe-form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+}
+
+.subscribe-input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: 1rem;
+}
+
+.subscribe-input:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+.subscribe-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.subscribe-button:hover {
+  background-color: #2c5282;
+}
+
+.subscribe-button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.subscribe-error {
+  color: #e53e3e;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.subscribe-note {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* 订阅成功样式 */
+.subscribe-success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon {
+  margin: 0 auto 1rem;
+  color: #48bb78;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1a202c;
+}
+
+.success-message {
+  color: #4a5568;
+} 

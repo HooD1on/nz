@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.9">
+    <path d="M30 45V25L45 15L60 25V45H54V30H36V45H30Z" fill="white"/>
+    <path d="M39 34H51V38H39V34Z" fill="white"/>
+    <path d="M39 40H51V44H39V40Z" fill="white"/>
+    <text x="70" y="35" font-family="Arial" font-size="14" font-weight="bold" fill="white">LUXURY</text>
+    <text x="70" y="50" font-family="Arial" font-size="14" font-weight="bold" fill="white">HOTELS</text>
+  </g>
+</svg> 
