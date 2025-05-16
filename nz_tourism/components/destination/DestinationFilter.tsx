@@ -21,6 +21,7 @@ const DestinationFilter: React.FC<DestinationFilterProps> = ({ onFilterChange })
   const [activityType, setActivityType] = useState('');
   const [season, setSeason] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   const regionOptions: FilterOption[] = [
     { value: '', label: '所有区域' },
@@ -135,16 +136,19 @@ const DestinationFilter: React.FC<DestinationFilterProps> = ({ onFilterChange })
       </div>
       
       <div className="search-section">
-        <form onSubmit={handleSearch} className="search-form">
+        <form onSubmit={handleSearch} className={`search-form ${isFocused ? 'focused' : ''}`}>
           <input
             type="text"
             className="search-input"
-            placeholder="搜索目的地..."
+            placeholder="探索新西兰的奇妙目的地..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            aria-label="搜索目的地"
           />
           <button type="submit" className="search-button">
-            <svg className="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             搜索

@@ -60,6 +60,27 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
   destination,
   relatedPackages
 }) => {
+  const [activeSection, setActiveSection] = useState('overview');
+
+  const sections = [
+    { id: 'overview', name: '概览' },
+    { id: 'gallery', name: '图片' },
+    { id: 'info', name: '详细信息' },
+    { id: 'reviews', name: '评论' },
+    { id: 'packages', name: '相关套餐' }
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="destination-page">
       <div className="destination-container">
@@ -72,37 +93,66 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
           reviewCount={destination.reviewCount}
         />
         
+        <div className="destination-nav-container">
+          <div className="destination-nav">
+            {sections.map(section => (
+              <button
+                key={section.id}
+                className={`nav-item ${activeSection === section.id ? 'active' : ''}`}
+                onClick={() => scrollToSection(section.id)}
+              >
+                {section.name}
+              </button>
+            ))}
+          </div>
+        </div>
+        
         <div className="destination-content">
           <div className="page-layout">
             <div className="main-content">
-              <DestinationDetails
-                description={destination.description}
-                highlights={destination.highlights}
-                bestTimeToVisit={destination.bestTimeToVisit}
-                weather={destination.weather}
-                language={destination.language}
-                currency={destination.currency}
-                timeZone={destination.timeZone}
-              />
+              <section id="overview" className="content-section">
+                <h2 className="section-title">目的地概览</h2>
+                <DestinationDetails
+                  description={destination.description}
+                  highlights={destination.highlights}
+                  bestTimeToVisit={destination.bestTimeToVisit}
+                  weather={destination.weather}
+                  language={destination.language}
+                  currency={destination.currency}
+                  timeZone={destination.timeZone}
+                />
+              </section>
               
-              <DestinationGallery images={destination.images} />
+              <section id="gallery" className="content-section">
+                <h2 className="section-title">图片展示</h2>
+                <DestinationGallery images={destination.images} />
+              </section>
               
-              <DestinationInfo
-                weather={destination.weather}
-                transportation={destination.transportation}
-                food={destination.food}
-                accommodation={destination.accommodation}
-                customs={destination.customs}
-              />
+              <section id="info" className="content-section">
+                <h2 className="section-title">详细信息</h2>
+                <DestinationInfo
+                  weather={destination.weather}
+                  transportation={destination.transportation}
+                  food={destination.food}
+                  accommodation={destination.accommodation}
+                  customs={destination.customs}
+                />
+              </section>
               
-              <ReviewSection
-                destinationId={destination.id}
-                reviews={destination.reviews}
-                averageRating={destination.rating}
-                totalReviews={destination.reviewCount}
-              />
+              <section id="reviews" className="content-section">
+                <h2 className="section-title">旅客评论</h2>
+                <ReviewSection
+                  destinationId={destination.id}
+                  reviews={destination.reviews}
+                  averageRating={destination.rating}
+                  totalReviews={destination.reviewCount}
+                />
+              </section>
               
-              <RelatedPackages packages={relatedPackages} />
+              <section id="packages" className="content-section">
+                <h2 className="section-title">相关套餐</h2>
+                <RelatedPackages packages={relatedPackages} />
+              </section>
             </div>
             
             <div className="sidebar">

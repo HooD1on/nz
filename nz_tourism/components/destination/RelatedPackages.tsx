@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useRef, useEffect } from 'react';
 
 interface Package {
   id: string;
@@ -19,10 +20,73 @@ interface RelatedPackagesProps {
 }
 
 const RelatedPackages: React.FC<RelatedPackagesProps> = ({ packages }) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateArrows = () => {
+      if (!containerRef.current) return;
+      
+      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+      setShowLeftArrow(scrollLeft > 0);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 5);
+    };
+
+    containerRef.current?.addEventListener('scroll', updateArrows);
+    updateArrows();
+
+    return () => {
+      containerRef.current?.removeEventListener('scroll', updateArrows);
+    };
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (!containerRef.current) return;
+    
+    const clientWidth = containerRef.current.clientWidth;
+    const scrollAmount = clientWidth * 0.8;
+    
+    const targetPosition = direction === 'left' 
+      ? scrollPosition - scrollAmount 
+      : scrollPosition + scrollAmount;
+    
+    containerRef.current.scrollTo({
+      left: targetPosition,
+      behavior: 'smooth'
+    });
+    
+    setScrollPosition(targetPosition);
+  };
+
   return (
     <div className="related-packages">
-      <h2 className="section-title">相关旅游套餐</h2>
-      <div className="packages-grid">
+      <div className="packages-header">
+        <h2 className="section-title">相关旅游套餐</h2>
+        <div className="package-controls">
+          <button 
+            className={`control-button ${!showLeftArrow ? 'disabled' : ''}`}
+            onClick={() => scroll('left')}
+            disabled={!showLeftArrow}
+          >
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button 
+            className={`control-button ${!showRightArrow ? 'disabled' : ''}`}
+            onClick={() => scroll('right')}
+            disabled={!showRightArrow}
+          >
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <div className="packages-carousel" ref={containerRef}>
         {packages.map((pkg) => (
           <Link key={pkg.id} href={`/packages/${pkg.id}`} className="package-card">
             <div className="package-image">
@@ -30,8 +94,10 @@ const RelatedPackages: React.FC<RelatedPackagesProps> = ({ packages }) => {
                 src={pkg.imageUrl}
                 alt={pkg.title}
                 fill
+                sizes="(max-width: 640px) 100vw, 350px"
                 className="package-image-content"
               />
+              <div className="package-badge">热门</div>
             </div>
             <div className="package-content">
               <h3 className="package-title">{pkg.title}</h3>
@@ -56,7 +122,7 @@ const RelatedPackages: React.FC<RelatedPackagesProps> = ({ packages }) => {
                 </div>
                 <div className="package-price">
                   <span className="price-label">起价</span>
-                  <span className="price-value">${pkg.price}</span>
+                  <span className="price-value">¥{pkg.price}</span>
                 </div>
               </div>
               <div className="package-duration">
@@ -68,6 +134,15 @@ const RelatedPackages: React.FC<RelatedPackagesProps> = ({ packages }) => {
             </div>
           </Link>
         ))}
+      </div>
+      
+      <div className="packages-footer">
+        <Link href="/packages" className="view-all-button">
+          查看全部套餐
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Link>
       </div>
     </div>
   );
