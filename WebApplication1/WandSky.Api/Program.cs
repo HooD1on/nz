@@ -60,6 +60,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 // 在现有服务注册的基础上添加
 builder.Services.AddScoped<IUserService, UserService>();
+// 注册 Review 相关服务
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 // 添加身份验证
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

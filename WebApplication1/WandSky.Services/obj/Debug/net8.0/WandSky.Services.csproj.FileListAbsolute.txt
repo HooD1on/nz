@@ -216,7 +216,6 @@ D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebas
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WandSky.Services.props
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WandSky.Services.props
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.pack.json
-D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\WandSky..9BFC602A.Up2Date
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\WandSky.Services.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\refint\WandSky.Services.dll

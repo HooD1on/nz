@@ -92,7 +92,6 @@ D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WandSky.Core.props
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WandSky.Core.props
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.pack.json
-D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\WandSky..8EE4C0C9.Up2Date
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\WandSky.Core.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\refint\WandSky.Core.dll

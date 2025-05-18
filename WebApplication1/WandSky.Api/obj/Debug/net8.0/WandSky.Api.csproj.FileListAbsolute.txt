@@ -389,7 +389,6 @@ D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.Gene
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.AssemblyInfoInputs.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.AssemblyInfo.cs
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.csproj.CoreCompileInputs.cache
-D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.MvcApplicationPartsAssemblyInfo.cs
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.MvcApplicationPartsAssemblyInfo.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.sourcelink.json
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\scopedcss\bundle\WandSky.Api.styles.css
@@ -402,10 +401,10 @@ D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\staticwebassets\
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WandSky.Api.props
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WandSky.Api.props
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\staticwebassets.pack.json
-D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky..5C5740F0.Up2Date
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\refint\WandSky.Api.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.pdb
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.genruntimeconfig.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\ref\WandSky.Api.dll
+D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.MvcApplicationPartsAssemblyInfo.cs

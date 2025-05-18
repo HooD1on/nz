@@ -1,7 +1,6 @@
 using WandSky.Core.Interfaces.Repositories;
 using WandSky.Core.Interfaces.Services;
-using WandSky.Core.Interfaces.Services;
-using WandSky.Core.Interfaces.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

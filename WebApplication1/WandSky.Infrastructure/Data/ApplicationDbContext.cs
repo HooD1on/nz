@@ -14,6 +14,9 @@ namespace WandSky.Infrastructure.Data
         public DbSet<UserPreferences> UserPreferences { get; set; }
         public DbSet<UserTravelPreference> UserTravelPreferences { get; set; }
 
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<ReviewImage> ReviewImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

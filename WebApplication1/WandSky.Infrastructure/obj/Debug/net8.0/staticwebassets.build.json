@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "I6My+R3MFxaCl2ppB6/kzQVBF5tz/MSBQw19xxB3LqQ=",
+  "Hash": "rTDE+gx3EIIrESyIdsnI455WY7XtPhruBFZmxYkitFc=",
   "Source": "WandSky.Infrastructure",
   "BasePath": "_content/WandSky.Infrastructure",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "WandSky.Core",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],
