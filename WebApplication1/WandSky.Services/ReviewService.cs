@@ -37,10 +37,10 @@ namespace WandSky.Services
                     Rating = review.Rating,
                     Date = review.CreatedAt?.ToString("yyyy-MM-dd") ?? "",
                     Images = review.Images.Select(i => i.ImageUrl).ToList(),
-                    IsLoggedInUser = !string.IsNullOrEmpty(review.UserId)
+                    IsLoggedInUser = review.UserId.HasValue 
                 };
 
-                if (!string.IsNullOrEmpty(review.UserId) && review.User != null)
+                if (review.UserId.HasValue && review.User != null)
                 {
                     reviewDto.UserName = $"{review.User.FirstName} {review.User.LastName}";
                     reviewDto.UserAvatar = review.User.ProfileImage ?? "/images/avatars/default.jpg";
@@ -85,8 +85,8 @@ namespace WandSky.Services
             // 处理登录用户和游客的区别
             if (userId.HasValue)
             {
-                // 登录用户，将Guid转换为字符串
-                review.UserId = userId.Value.ToString();
+                // 登录用户，现在直接使用 Guid 类型
+                review.UserId = userId;
             }
             else
             {
@@ -121,7 +121,7 @@ namespace WandSky.Services
                 Rating = review.Rating,
                 Date = review.CreatedAt?.ToString("yyyy-MM-dd") ?? "",
                 Images = reviewDto.Images ?? new List<string>(),
-                IsLoggedInUser = userId.HasValue
+                IsLoggedInUser = userId.HasValue // 直接使用传入的 userId 参数判断
             };
 
             // 处理用户信息

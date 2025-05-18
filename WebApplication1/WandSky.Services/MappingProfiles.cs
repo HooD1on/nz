@@ -23,13 +23,14 @@ namespace WandSky.Services
                 }));
 
             // 添加 Review 映射
+            // 修改 MappingProfiles.cs 文件中关于 Review 映射的代码
             CreateMap<Review, ReviewDto>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src =>
-                    !string.IsNullOrEmpty(src.UserId) && src.User != null
+                    src.UserId.HasValue && src.User != null
                         ? $"{src.User.FirstName} {src.User.LastName}"
                         : (string.IsNullOrEmpty(src.GuestName) ? "游客" : src.GuestName)))
                 .ForMember(dest => dest.UserAvatar, opt => opt.MapFrom(src =>
-                    !string.IsNullOrEmpty(src.UserId) && src.User != null
+                    src.UserId.HasValue && src.User != null
                         ? (src.User.ProfileImage ?? "/images/avatars/default.jpg")
                         : "/images/avatars/guest.jpg"))
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src =>
@@ -37,7 +38,7 @@ namespace WandSky.Services
                 .ForMember(dest => dest.Images, opt => opt.MapFrom(src =>
                     src.Images.Select(i => i.ImageUrl).ToList()))
                 .ForMember(dest => dest.IsLoggedInUser, opt => opt.MapFrom(src =>
-                    !string.IsNullOrEmpty(src.UserId)));
+                    src.UserId.HasValue)); // 修改这里，使用 HasValue 代替 string.IsNullOrEmpty
         }
     }
 }

@@ -4,6 +4,7 @@ using WandSky.Core.Entities;
 
 namespace WandSky.Infrastructure.Data.Config
 {
+    // WandSky.Infrastructure/Data/Config/ReviewConfiguration.cs
     public class ReviewConfiguration : IEntityTypeConfiguration<Review>
     {
         public void Configure(EntityTypeBuilder<Review> builder)
@@ -23,14 +24,15 @@ namespace WandSky.Infrastructure.Data.Config
             builder.Property(r => r.GuestEmail)
                 .HasMaxLength(100);
 
-            // 修改这部分 - 简化关系配置
+            // 修改为正确的外键关系配置
             builder.HasOne(r => r.User)
                 .WithMany()
                 .HasForeignKey(r => r.UserId)
-                .IsRequired(false)
-                .OnDelete(DeleteBehavior.SetNull);
+                .IsRequired(false) // 设置为不必需，允许游客评论
+                .OnDelete(DeleteBehavior.SetNull); // 当用户被删除时，评论保留但UserId置为null
         }
     }
+
 
     public class ReviewImageConfiguration : IEntityTypeConfiguration<ReviewImage>
     {

@@ -408,3 +408,4 @@ D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.pdb
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.genruntimeconfig.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\ref\WandSky.Api.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\WandSky.Api.MvcApplicationPartsAssemblyInfo.cs
+D:\旅游软件\nz\WebApplication1\WandSky.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -222,3 +222,4 @@ D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\refint\Wand
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\WandSky.Services.pdb
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\WandSky.Services.genruntimeconfig.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\ref\WandSky.Services.dll
+D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
