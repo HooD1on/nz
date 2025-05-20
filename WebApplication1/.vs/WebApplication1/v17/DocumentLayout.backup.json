@@ -213,8 +213,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -242,10 +246,6 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "MappingProfiles.cs",
@@ -264,8 +264,8 @@
               "Title": "WandSky.Infrastructure.csproj",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\WandSky.Infrastructure.csproj*",
-              "RelativeToolTip": "WandSky.Infrastructure\\WandSky.Infrastructure.csproj*",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
+              "RelativeToolTip": "WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-03-23T14:35:44.669Z",

@@ -213,12 +213,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -242,8 +238,7 @@
               "RelativeToolTip": "WandSky.Services\\ReviewService.cs",
               "ViewState": "AgIAAFgAAAAAAAAAAAAcwHwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T05:59:33.343Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T05:59:33.343Z"
             },
             {
               "$type": "Document",
@@ -255,8 +250,7 @@
               "RelativeToolTip": "WandSky.Services\\MappingProfiles.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T15:12:26.359Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T15:12:26.359Z"
             },
             {
               "$type": "Document",
@@ -268,8 +262,7 @@
               "RelativeToolTip": "WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-23T14:35:44.669Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T14:35:44.669Z"
             },
             {
               "$type": "Document",
@@ -281,8 +274,7 @@
               "RelativeToolTip": "WandSky.Infrastructure\\Data\\Config\\UserConfiguration.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAIwDwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T04:31:24.417Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-28T04:31:24.417Z"
             },
             {
               "$type": "Document",
@@ -294,8 +286,7 @@
               "RelativeToolTip": "WandSky.Infrastructure\\Data\\Config\\ReviewConfiguration.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAAwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T06:56:12.746Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T06:56:12.746Z"
             },
             {
               "$type": "Document",
@@ -307,8 +298,7 @@
               "RelativeToolTip": "WandSky.Core\\Entitiies\\Review.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T00:15:36.537Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T00:15:36.537Z"
             },
             {
               "$type": "Document",
@@ -320,8 +310,7 @@
               "RelativeToolTip": "WandSky.Api\\Program.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T11:10:24.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T11:10:24.97Z"
             },
             {
               "$type": "Document",
@@ -844,6 +833,10 @@
               "RelativeToolTip": "..\\..\\WebApplication1\\WebApplication1\\Program.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:02:55.701Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }
