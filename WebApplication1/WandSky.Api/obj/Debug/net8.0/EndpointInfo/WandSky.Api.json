@@ -160,8 +160,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           },
           {
@@ -227,8 +226,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           }
         ],
@@ -600,8 +598,7 @@
         "type": "object",
         "properties": {
           "destinationId": {
-            "type": "string",
-            "format": "uuid"
+            "nullable": true
           },
           "guestName": {
             "type": "string",

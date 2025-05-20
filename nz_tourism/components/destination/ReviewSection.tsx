@@ -5,9 +5,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
-// 修改API基础URL处理方式，确保末尾没有斜杠
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') || '';
-console.log('使用的API基础URL:', API_BASE_URL);
+// 确保API基础URL末尾没有斜杠
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5152';
 
 interface Review {
   id: string;
@@ -24,7 +23,7 @@ interface ReviewStatistics {
   averageRating: number;
   totalReviews: number;
   ratingDistribution: {
-    [key: string]: number; // 使用字符串索引
+    [key: string]: number;
   };
 }
 
@@ -37,7 +36,7 @@ interface ReviewSectionProps {
 
 const ReviewSection: React.FC<ReviewSectionProps> = ({
   destinationId,
-  reviews: initialReviews = [], // 提供默认值
+  reviews: initialReviews = [],
   averageRating: initialAverageRating = 0,
   totalReviews: initialTotalReviews = 0
 }) => {
@@ -58,7 +57,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
   });
   const [loading, setLoading] = useState(true);
 
-  // 显示初始值日志
+  // 记录传入的参数以便调试
   useEffect(() => {
     console.log('ReviewSection 初始化参数:', {
       destinationId,
@@ -68,40 +67,35 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
     });
   }, [destinationId, initialReviews, initialAverageRating, initialTotalReviews]);
 
-  // 获取评论和统计数据 - 修改API路径和添加更多日志
+  // 获取评论和统计数据
   const fetchReviewData = async () => {
     setLoading(true);
     try {
-      console.log('当前使用的destinationId:', destinationId); // 调试日志
+      console.log('当前使用的destinationId:', destinationId);
       
-      // 构建评论请求URL
+      // 使用动态的destinationId而非硬编码值
       const reviewsUrl = `${API_BASE_URL}/api/reviews/destination/${destinationId}`;
       console.log('评论请求URL:', reviewsUrl);
       
-      // 发起评论请求
       const reviewsResponse = await fetch(reviewsUrl);
       if (!reviewsResponse.ok) {
         console.error('评论请求失败状态:', reviewsResponse.status, reviewsResponse.statusText);
         throw new Error(`评论数据获取失败: ${reviewsResponse.status}`);
       }
       
-      // 解析评论数据
       const reviewsData = await reviewsResponse.json();
       console.log('获取到的评论数据:', reviewsData);
       setReviews(reviewsData);
 
-      // 构建统计请求URL
       const statsUrl = `${API_BASE_URL}/api/reviews/destination/${destinationId}/statistics`;
       console.log('统计请求URL:', statsUrl);
       
-      // 发起统计请求
       const statsResponse = await fetch(statsUrl);
       if (!statsResponse.ok) {
         console.error('统计请求失败状态:', statsResponse.status, statsResponse.statusText);
         throw new Error(`评论统计获取失败: ${statsResponse.status}`);
       }
       
-      // 解析统计数据
       const statsData = await statsResponse.json();
       console.log('获取到的统计数据:', statsData);
       setStatistics(statsData);
@@ -126,7 +120,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
 
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
 
-  // 提交评论 - 修改API路径并添加更多日志
+  // 提交评论
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -138,11 +132,6 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
 
     if (!session && !guestName) {
       setError('请输入您的名称');
-      return;
-    }
-
-    if (!destinationId) {
-      setError('无效的目的地ID');
       return;
     }
 
@@ -161,20 +150,19 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
 
       console.log('提交评论数据:', reviewData);
 
-      // 构建评论提交URL
       const postUrl = `${API_BASE_URL}/api/reviews`;
       console.log('提交评论URL:', postUrl);
       
-      // 发起评论提交请求
       const response = await fetch(postUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          // 如果用户已登录，添加授权头
+          ...((session as any)?.accessToken ? { 'Authorization': `Bearer ${(session as any).accessToken}` } : {})
         },
         body: JSON.stringify(reviewData)
       });
 
-      // 检查请求结果
       if (!response.ok) {
         let errorMessage = '提交评论失败';
         try {
@@ -187,7 +175,6 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
         throw new Error(errorMessage);
       }
 
-      // 处理成功响应
       const result = await response.json();
       console.log('评论提交成功:', result);
 
@@ -208,7 +195,6 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
     }
   };
 
-  // 渲染函数
   return (
     <div className="review-section">
       {/* 评论统计部分 */}
@@ -264,7 +250,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
         </div>
       )}
       
-      {/* 评论列表部分 - 添加条件渲染 */}
+      {/* 评论列表部分 */}
       <div className="review-list">
         {loading ? (
           <div className="loading-reviews" style={{ padding: '20px', textAlign: 'center' }}>
@@ -277,11 +263,12 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
               <div className="review-header">
                 <div className="reviewer-info">
                   <div className="reviewer-avatar">
-                    <Image
-                      src={review.userAvatar}
+                    <img
+                      src={review.userAvatar || "/images/avatars/default.jpg"}
                       alt={review.userName}
                       width={40}
                       height={40}
+                      style={{ borderRadius: '50%', objectFit: 'cover' }}
                     />
                   </div>
                   <div className="reviewer-details">
@@ -306,11 +293,12 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
                 <div className="review-images">
                   {review.images.map((img, index) => (
                     <div key={index} className="review-image">
-                      <Image
+                      <img
                         src={img}
                         alt={`评价配图 ${index + 1}`}
                         width={100}
                         height={100}
+                        style={{ objectFit: 'cover', borderRadius: '4px' }}
                       />
                     </div>
                   ))}

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// WebApplication1/WandSky.Core/DTOs/ReviewDto.cs
+// 修复版的ReviewDto
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,18 +10,19 @@ namespace WandSky.Core.DTOs
     public class ReviewDto
     {
         public Guid Id { get; set; }
-        public string UserName { get; set; } // 用户名或游客名
-        public string UserAvatar { get; set; } // 用户头像或默认头像
-        public string Content { get; set; }
+        public string UserName { get; set; } = string.Empty; // 用户名或游客名
+        public string UserAvatar { get; set; } = string.Empty; // 用户头像或默认头像
+        public string Content { get; set; } = string.Empty;
         public int Rating { get; set; }
-        public string Date { get; set; } // 格式化的日期
+        public string Date { get; set; } = string.Empty; // 格式化的日期
         public List<string> Images { get; set; } = new List<string>();
-        public bool IsLoggedInUser { get; set; } // 是否为登录用户
+        public bool IsLoggedInUser { get; set; } = false; // 是否为登录用户
     }
 
     public class CreateReviewDto
     {
-        public Guid DestinationId { get; set; }
+        // 允许DestinationId是字符串或GUID
+        public object DestinationId { get; set; }
 
         // 游客信息，登录用户不需要填写
         public string GuestName { get; set; }

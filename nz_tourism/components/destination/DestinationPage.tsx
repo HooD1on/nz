@@ -1,4 +1,5 @@
 // nz_tourism/components/destination/DestinationPage.tsx
+// 修复版的DestinationPage组件
 
 'use client';
 
@@ -9,7 +10,7 @@ import DestinationGallery from './DestinationGallery';
 import DestinationInfo from './DestinationInfo';
 import RelatedPackages from './RelatedPackages';
 import DestinationAction from './DestinationAction';
-import ReviewSection from './ReviewSection'; // 添加引用
+import ReviewSection from './ReviewSection';
 import '../../styles/destination.css';
 
 interface DestinationPageProps {
@@ -68,7 +69,7 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
     { id: 'overview', name: '概览' },
     { id: 'gallery', name: '图片' },
     { id: 'info', name: '详细信息' },
-    { id: 'reviews', name: '评论' }, // 确保有评论的导航项
+    { id: 'reviews', name: '评论' },
     { id: 'packages', name: '相关套餐' }
   ];
 
@@ -82,6 +83,9 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
       });
     }
   };
+
+  // 打印目的地ID，便于调试
+  console.log('当前目的地ID:', destination.id);
 
   return (
     <div className="destination-page">
@@ -141,14 +145,13 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
                 />
               </section>
               
-              {/* 添加评论部分 */}
               <section id="reviews" className="content-section">
                 <h2 className="section-title">旅客评论</h2>
                 <ReviewSection
                   destinationId={destination.id}
                   reviews={destination.reviews.map(review => ({
                     ...review,
-                    isLoggedInUser: false // 给现有数据添加这个属性
+                    isLoggedInUser: false // 添加缺失的属性
                   }))}
                   averageRating={destination.rating}
                   totalReviews={destination.reviewCount}

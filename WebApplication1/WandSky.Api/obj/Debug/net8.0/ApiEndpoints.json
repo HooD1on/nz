@@ -113,7 +113,7 @@
     "Parameters": [
       {
         "Name": "destinationId",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
@@ -149,7 +149,7 @@
     "Parameters": [
       {
         "Name": "destinationId",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
