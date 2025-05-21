@@ -1,5 +1,5 @@
 ﻿// WebApplication1/WandSky.Services/ReviewService.cs
-// 修复版的ReviewService
+// 修复接口实现问题
 
 using System;
 using System.Collections.Generic;
@@ -29,6 +29,7 @@ namespace WandSky.Services
             _logger = logger;
         }
 
+        // 确保方法签名与接口定义完全匹配
         public async Task<List<ReviewDto>> GetDestinationReviewsAsync(Guid destinationId, int page = 1, int pageSize = 10)
         {
             try
@@ -97,6 +98,7 @@ namespace WandSky.Services
             }
         }
 
+        // 确保方法签名与接口定义完全匹配
         public async Task<ReviewStatisticsDto> GetDestinationReviewStatisticsAsync(Guid destinationId)
         {
             try
@@ -125,19 +127,33 @@ namespace WandSky.Services
         {
             try
             {
-                // 确保DestinationId是Guid
+                // 改进的目的地ID处理
                 Guid destinationGuid;
-                if (reviewDto.DestinationId is Guid)
+
+                if (reviewDto.DestinationId is Guid guidValue)
                 {
-                    destinationGuid = (Guid)reviewDto.DestinationId;
+                    destinationGuid = guidValue;
+                    _logger.LogInformation($"目的地ID已经是Guid类型: {destinationGuid}");
                 }
-                else if (!Guid.TryParse(reviewDto.DestinationId.ToString(), out destinationGuid))
+                else
                 {
-                    throw new ArgumentException($"无效的目的地ID格式: {reviewDto.DestinationId}");
+                    // 尝试将其他类型转换为Guid
+                    string destinationIdStr = reviewDto.DestinationId?.ToString() ?? string.Empty;
+
+                    if (Guid.TryParse(destinationIdStr, out destinationGuid))
+                    {
+                        _logger.LogInformation($"成功将目的地ID转换为Guid: {destinationGuid}");
+                    }
+                    else
+                    {
+                        _logger.LogError($"无效的目的地ID格式: {reviewDto.DestinationId}");
+                        throw new ArgumentException($"无效的目的地ID格式: {reviewDto.DestinationId}");
+                    }
                 }
 
                 _logger.LogInformation($"创建评论, 目的地ID: {destinationGuid}, 用户ID: {userId}");
 
+                // 创建评论实体
                 var review = new Review
                 {
                     Id = Guid.NewGuid(),
@@ -147,6 +163,19 @@ namespace WandSky.Services
                     CreatedAt = DateTime.UtcNow
                 };
 
+                // 设置用户ID或游客信息
+                if (userId.HasValue)
+                {
+                    review.UserId = userId;
+                }
+                else
+                {
+                    review.UserId = null;
+                    review.GuestName = reviewDto.GuestName ?? "游客";
+                    review.GuestEmail = reviewDto.GuestEmail ?? string.Empty;
+                    _logger.LogInformation($"游客评论: {review.GuestName}");
+                }
+
                 // 处理图片
                 if (reviewDto.Images != null && reviewDto.Images.Count > 0)
                 {
@@ -155,6 +184,12 @@ namespace WandSky.Services
 
                     foreach (var imageUrl in reviewDto.Images)
                     {
+                        if (string.IsNullOrEmpty(imageUrl))
+                        {
+                            _logger.LogWarning("跳过空图片URL");
+                            continue;
+                        }
+
                         review.Images.Add(new ReviewImage
                         {
                             Id = Guid.NewGuid(),
@@ -169,6 +204,7 @@ namespace WandSky.Services
                     review.Images = new List<ReviewImage>();
                 }
 
+                // 保存评论
                 await _reviewRepository.AddAsync(review);
                 _logger.LogInformation($"评论保存成功, ID: {review.Id}");
 
@@ -180,7 +216,7 @@ namespace WandSky.Services
                     Rating = review.Rating,
                     Date = review.CreatedAt?.ToString("yyyy-MM-dd") ?? "",
                     Images = reviewDto.Images ?? new List<string>(),
-                    IsLoggedInUser = userId.HasValue // 直接使用传入的 userId 参数判断
+                    IsLoggedInUser = userId.HasValue
                 };
 
                 // 处理用户信息

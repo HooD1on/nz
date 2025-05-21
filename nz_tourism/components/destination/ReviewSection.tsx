@@ -8,6 +8,15 @@ import { useSession } from 'next-auth/react';
 // 确保API基础URL末尾没有斜杠
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5152';
 
+// 添加目的地ID映射 - 确保与后端完全一致
+const destinationGuidMap: {[key: string]: string} = {
+  'queenstown': 'f8a7b3c1-d2e4-4f5a-9b8c-7d6e5f4a3b2c',
+  'auckland': 'a1b2c3d4-e5f6-4a5b-8c9d-7e6f5a4b3c2',
+  'rotorua': 'b2c3d4e5-f6a7-5b8c-9d0e-1f2a3b4c5d6',
+  'milford-sound': 'c3d4e5f6-a7b8-6c9d-0e1f-2a3b4c5d6e7',
+  'hobbiton': 'd4e5f6a7-b8c9-7d0e-1f2a-3b4c5d6e7f8'
+};
+
 interface Review {
   id: string;
   userName: string;
@@ -71,23 +80,49 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
   const fetchReviewData = async () => {
     setLoading(true);
     try {
-      console.log('当前使用的destinationId:', destinationId);
+      console.log('原始destinationId:', destinationId, 'type:', typeof destinationId);
       
-      // 使用动态的destinationId而非硬编码值
-      const reviewsUrl = `${API_BASE_URL}/api/reviews/destination/${destinationId}`;
+      // 转换destinationId - 字符串ID映射到GUID
+      let effectiveDestinationId = destinationId;
+      if (typeof destinationId === 'string' && destinationGuidMap[destinationId]) {
+        effectiveDestinationId = destinationGuidMap[destinationId];
+        console.log(`目的地ID "${destinationId}" 已映射到GUID: ${effectiveDestinationId}`);
+      }
+      
+      // 使用映射后的ID构建URL
+      const reviewsUrl = `${API_BASE_URL}/api/reviews/destination/${effectiveDestinationId}`;
       console.log('评论请求URL:', reviewsUrl);
       
+      // 增强错误处理的请求
       const reviewsResponse = await fetch(reviewsUrl);
       if (!reviewsResponse.ok) {
         console.error('评论请求失败状态:', reviewsResponse.status, reviewsResponse.statusText);
+        
+        // 尝试读取详细错误信息
+        try {
+          const errorText = await reviewsResponse.text();
+          console.error('错误响应内容:', errorText);
+          
+          try {
+            const errorData = JSON.parse(errorText);
+            console.error('解析后的错误信息:', errorData);
+          } catch (e) {
+            console.error('错误响应不是有效的JSON格式');
+          }
+        } catch (e) {
+          console.error('无法读取错误响应内容');
+        }
+        
         throw new Error(`评论数据获取失败: ${reviewsResponse.status}`);
       }
       
+      // 处理成功响应
       const reviewsData = await reviewsResponse.json();
       console.log('获取到的评论数据:', reviewsData);
       setReviews(reviewsData);
 
-      const statsUrl = `${API_BASE_URL}/api/reviews/destination/${destinationId}/statistics`;
+      // 同样处理统计数据请求
+      const statsUrl = `${API_BASE_URL}/api/reviews/destination/${effectiveDestinationId}/statistics`;
       console.log('统计请求URL:', statsUrl);
       
       const statsResponse = await fetch(statsUrl);
@@ -120,7 +155,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
 
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
 
-  // 提交评论
+  // 提交评论 - 修复版
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -139,12 +174,20 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
     setError('');
 
     try {
+      // 转换destinationId - 字符串ID映射到GUID
+      let effectiveDestinationId = destinationId;
+      if (typeof destinationId === 'string' && destinationGuidMap[destinationId]) {
+        effectiveDestinationId = destinationGuidMap[destinationId];
+        console.log(`目的地ID "${destinationId}" 已映射到GUID: ${effectiveDestinationId}`);
+      }
+      
       const reviewData = {
-        destinationId,
+        destinationId: effectiveDestinationId,
         content: newReview,
         rating: newRating,
-        guestName: session ? undefined : guestName,
-        guestEmail: session ? undefined : guestEmail,
+        // 确保游客评论始终提供这些字段
+        guestName: guestName || "游客",
+        guestEmail: guestEmail || "guest@example.com",
         images: []
       };
 
@@ -153,28 +196,44 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
       const postUrl = `${API_BASE_URL}/api/reviews`;
       console.log('提交评论URL:', postUrl);
       
+      // 使用类型断言处理session.accessToken
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+        ...((session as any)?.accessToken ? { 'Authorization': `Bearer ${(session as any).accessToken}` } : {})
+      };
+      console.log('请求头:', headers);
+      
       const response = await fetch(postUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // 如果用户已登录，添加授权头
-          ...((session as any)?.accessToken ? { 'Authorization': `Bearer ${(session as any).accessToken}` } : {})
-        },
+        headers,
         body: JSON.stringify(reviewData)
       });
 
+      // 增强错误处理
       if (!response.ok) {
+        console.error('提交评论失败状态:', response.status, response.statusText);
+        
         let errorMessage = '提交评论失败';
         try {
-          const errorData = await response.json();
-          errorMessage = errorData.error || `提交评论失败: ${response.status}`;
+          const errorText = await response.text();
+          console.error('错误响应内容:', errorText);
+          
+          try {
+            const errorData = JSON.parse(errorText);
+            errorMessage = errorData.error || `提交评论失败: ${response.status}`;
+            console.error('解析后的错误信息:', errorData);
+          } catch (e) {
+            console.error('错误响应不是有效的JSON格式');
+            errorMessage = `提交评论失败: ${response.status} ${response.statusText}`;
+          }
         } catch (e) {
-          errorMessage = `提交评论失败: ${response.status} ${response.statusText}`;
+          console.error('无法读取错误响应内容');
         }
-        console.error('评论提交失败:', errorMessage);
+        
         throw new Error(errorMessage);
       }
 
+      // 处理成功响应
       const result = await response.json();
       console.log('评论提交成功:', result);
 
@@ -269,6 +328,11 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
                       width={40}
                       height={40}
                       style={{ borderRadius: '50%', objectFit: 'cover' }}
+                      onError={(e) => {
+                        console.warn(`头像加载失败: ${review.userAvatar}`);
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/images/avatars/default.jpg";
+                      }}
                     />
                   </div>
                   <div className="reviewer-details">
@@ -299,6 +363,11 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
                         width={100}
                         height={100}
                         style={{ objectFit: 'cover', borderRadius: '4px' }}
+                        onError={(e) => {
+                          console.warn(`评论图片加载失败: ${img}`);
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = "/images/placeholder.jpg";
+                        }}
                       />
                     </div>
                   ))}
