@@ -134,16 +134,18 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
                 <DestinationGallery images={destination.images} />
               </section>
               
-              <section id="info" className="content-section">
-                <h2 className="section-title">详细信息</h2>
-                <DestinationInfo
-                  weather={destination.weather}
-                  transportation={destination.transportation}
-                  food={destination.food}
-                  accommodation={destination.accommodation}
-                  customs={destination.customs}
-                />
-              </section>
+
+<section id="info" className="content-section">
+  <h2 className="section-title">详细信息</h2>
+  <DestinationInfo
+    weather={destination.weather}
+    transportation={destination.transportation}
+    food={destination.food}
+    accommodation={destination.accommodation}
+    customs={destination.customs}
+    destinationId={destination.id} // 添加ID
+  />
+</section>
               
               <section id="reviews" className="content-section">
                 <h2 className="section-title">旅客评论</h2>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface InfoItem {
   title: string;
@@ -14,16 +14,82 @@ interface DestinationInfoProps {
   food: string;
   accommodation: string;
   customs: string;
+  destinationId: string; // 新增属性，用于API调用
 }
 
 const DestinationInfo: React.FC<DestinationInfoProps> = ({
-  weather,
+  weather: staticWeather,
   transportation,
   food,
   accommodation,
-  customs
+  customs,
+  destinationId
 }) => {
   const [activeTab, setActiveTab] = useState('weather');
+  const [weather, setWeather] = useState(staticWeather);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [lastUpdated, setLastUpdated] = useState<string>('');
+
+  // 获取实时天气数据
+  useEffect(() => {
+    // 只在天气标签激活时获取数据
+    if (activeTab !== 'weather') return;
+
+    const fetchWeatherData = async () => {
+      setIsLoading(true);
+      setError('');
+      
+      try {
+        console.log(`获取目的地天气数据: ${destinationId}`);
+        const response = await fetch(`/api/weather/${destinationId}`);
+        
+        if (!response.ok) {
+          throw new Error(`天气API返回状态码: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        
+        // 构建新的天气描述
+        let dynamicWeather = '';
+        
+        if (data.current) {
+          dynamicWeather = `实时天气：${data.current.condition.text}，温度：${data.current.temp_c}°C，体感温度：${data.current.feelslike_c}°C，风速：${data.current.wind_kph}km/h，湿度：${data.current.humidity}%。\n\n`;
+          
+          // 更新最后更新时间
+          const now = new Date();
+          setLastUpdated(now.toLocaleString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+          }));
+        }
+        
+        // 结合动态天气和静态季节描述
+        setWeather(dynamicWeather + staticWeather);
+        console.log('天气数据更新成功');
+      } catch (err) {
+        console.error('获取天气数据失败:', err);
+        setError('获取实时天气数据失败，显示静态信息');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchWeatherData();
+    
+    // 设置定时刷新 (每4小时)
+    const REFRESH_INTERVAL = 4 * 60 * 60 * 1000; // 4小时，单位毫秒
+    const timer = setInterval(fetchWeatherData, REFRESH_INTERVAL);
+    
+    return () => clearInterval(timer);
+  }, [destinationId, activeTab, staticWeather]);
 
   const infoTabs: Record<string, { title: string; icon: React.ReactNode }> = {
     weather: {
@@ -71,7 +137,22 @@ const DestinationInfo: React.FC<DestinationInfoProps> = ({
   const getActiveContent = () => {
     switch (activeTab) {
       case 'weather':
-        return weather;
+        return (
+          <>
+            {isLoading && <p className="loading-indicator">正在获取最新天气数据...</p>}
+            {error && <p className="error-message">{error}</p>}
+            <div>
+              {weather.split('\n\n').map((paragraph, index) => (
+                <p key={index} className="weather-paragraph">{paragraph}</p>
+              ))}
+              {lastUpdated && (
+                <p className="last-updated">
+                  <small>最后更新: {lastUpdated}</small>
+                </p>
+              )}
+            </div>
+          </>
+        );
       case 'transportation':
         return transportation;
       case 'food':
@@ -107,13 +188,45 @@ const DestinationInfo: React.FC<DestinationInfoProps> = ({
           <div className="info-content">
             <h3 className="info-content-title">{infoTabs[activeTab].title}</h3>
             <div className="info-content-body">
-              <p>{getActiveContent()}</p>
+              {getActiveContent()}
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .loading-indicator {
+          color: #666;
+          font-style: italic;
+          padding: 10px;
+          background-color: #f5f5f5;
+          border-radius: 4px;
+          margin-bottom: 10px;
+        }
+        
+        .error-message {
+          color: #e53e3e;
+          padding: 10px;
+          background-color: #fff5f5;
+          border-radius: 4px;
+          margin-bottom: 10px;
+        }
+        
+        .weather-paragraph {
+          margin-bottom: 16px;
+          line-height: 1.6;
+        }
+        
+        .last-updated {
+          font-size: 0.8rem;
+          color: #718096;
+          text-align: right;
+          margin-top: 16px;
+          font-style: italic;
+        }
+      `}</style>
     </div>
   );
 };
 
-export default DestinationInfo; 
+export default DestinationInfo;
