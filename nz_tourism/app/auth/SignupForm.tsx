@@ -3,9 +3,7 @@
 import { useState, FormEvent } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
 
-// 定义接口
 interface SignupFormData {
   firstName: string;
   lastName: string;
@@ -15,7 +13,6 @@ interface SignupFormData {
   agreeTerms: boolean;
 }
 
-// 定义API响应接口
 interface AuthResponse {
   success: boolean;
   token?: string;
@@ -32,12 +29,12 @@ interface SignupFormProps {
   submitError: string;
   setSubmitError: (error: string) => void;
   setActiveTab: (tab: 'login' | 'signup') => void;
+  onSuccess?: () => void;
 }
 
-export default function SignupForm({ submitError, setSubmitError, setActiveTab }: SignupFormProps) {
+export default function SignupForm({ submitError, setSubmitError, setActiveTab, onSuccess }: SignupFormProps) {
   const router = useRouter();
   
-  // 注册表单状态
   const [signupForm, setSignupForm] = useState<SignupFormData>({
     firstName: '',
     lastName: '',
@@ -47,11 +44,9 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
     agreeTerms: false
   });
   
-  // 表单错误状态
   const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // 处理注册表单更新
   const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value, type, checked } = e.target;
     setSignupForm(prev => ({
@@ -60,7 +55,6 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
     }));
   };
   
-  // 验证注册表单
   const validateSignupForm = (): boolean => {
     const errors: {[key: string]: string} = {};
     
@@ -93,7 +87,6 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
     return Object.keys(errors).length === 0;
   };
   
-  // 处理注册提交
   const handleSignupSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
@@ -103,7 +96,6 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
     setSubmitError('');
     
     try {
-      // 调用注册API
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
@@ -120,17 +112,18 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
       const data: AuthResponse = await response.json();
       
       if (data.success) {
-        // 注册成功后自动登录
         if (data.token) {
           localStorage.setItem('token', data.token);
           if (data.user) {
             localStorage.setItem('user', JSON.stringify(data.user));
           }
           
-          // 重定向到首页
-          router.push('/');
+          if (onSuccess) {
+            onSuccess();
+          } else {
+            router.push('/');
+          }
         } else {
-          // 切换到登录标签
           setActiveTab('login');
         }
       } else {
@@ -146,8 +139,8 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
 
   return (
     <>
-      <h2>Create an Account</h2>
-      <p className="auth-subtitle">Join WandSky and start your adventure</p>
+      <h2>创建账户</h2>
+      <p className="auth-subtitle">加入WandSky，开始您的冒险之旅</p>
       
       {submitError && (
         <div style={{ color: 'red', marginBottom: '15px' }}>{submitError}</div>
@@ -156,11 +149,11 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
       <form className="auth-form" onSubmit={handleSignupSubmit}>
         <div className="form-field-group">
           <div className="form-field">
-            <label htmlFor="first-name">First Name</label>
+            <label htmlFor="first-name">名字</label>
             <input 
               type="text" 
               id="first-name" 
-              placeholder="First name" 
+              placeholder="名字" 
               value={signupForm.firstName}
               onChange={handleSignupChange}
               required 
@@ -171,11 +164,11 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
           </div>
           
           <div className="form-field">
-            <label htmlFor="last-name">Last Name</label>
+            <label htmlFor="last-name">姓氏</label>
             <input 
               type="text" 
               id="last-name" 
-              placeholder="Last name" 
+              placeholder="姓氏" 
               value={signupForm.lastName}
               onChange={handleSignupChange}
               required 
@@ -187,7 +180,7 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
         </div>
         
         <div className="form-field">
-          <label htmlFor="signup-email">Email Address</label>
+          <label htmlFor="signup-email">邮箱地址</label>
           <input 
             type="email" 
             id="signup-email" 
@@ -202,27 +195,27 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
         </div>
         
         <div className="form-field">
-          <label htmlFor="signup-password">Password</label>
+          <label htmlFor="signup-password">密码</label>
           <input 
             type="password" 
             id="signup-password" 
-            placeholder="Create a password" 
+            placeholder="创建密码" 
             value={signupForm.password}
             onChange={handleSignupChange}
             required 
           />
-          <p className="password-hint">Must be at least 8 characters with 1 uppercase, 1 number and 1 special character</p>
+          <p className="password-hint">密码必须至少包含8个字符，1个大写字母，1个数字和1个特殊字符</p>
           {formErrors.password && (
             <div style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>{formErrors.password}</div>
           )}
         </div>
         
         <div className="form-field">
-          <label htmlFor="confirm-password">Confirm Password</label>
+          <label htmlFor="confirm-password">确认密码</label>
           <input 
             type="password" 
             id="confirm-password" 
-            placeholder="Confirm your password" 
+            placeholder="确认您的密码" 
             value={signupForm.confirmPassword}
             onChange={handleSignupChange}
             required 
@@ -241,7 +234,7 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
             required 
           />
           <label htmlFor="terms">
-            I agree to the <Link href="/terms">Terms of Service</Link> and <Link href="/privacy">Privacy Policy</Link>
+            我同意 <Link href="/terms">服务条款</Link> 和 <Link href="/privacy">隐私政策</Link>
           </label>
           {formErrors.agreeTerms && (
             <div style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>{formErrors.agreeTerms}</div>
@@ -253,24 +246,18 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab }
           className="auth-button"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Creating Account...' : 'Create Account'}
+          {isSubmitting ? '创建账户中...' : '创建账户'}
         </button>
       </form>
       
       <div className="social-auth">
-        <p>Or sign up with</p>
+        <p>或使用以下方式注册</p>
         <div className="social-buttons">
           <button className="social-btn facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-            </svg>
-            Facebook
+            <span>Facebook</span>
           </button>
           <button className="social-btn google">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
-            </svg>
-            Google
+            <span>Google</span>
           </button>
         </div>
       </div>

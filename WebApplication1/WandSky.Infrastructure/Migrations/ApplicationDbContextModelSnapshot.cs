@@ -220,6 +220,64 @@ namespace WandSky.Infrastructure.Migrations
                     b.ToTable("UserTravelPreferences");
                 });
 
+            modelBuilder.Entity("WandSky.Core.Entities.Wishlist", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DestinationId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("DestinationImage")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("DestinationLocation")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal?>("DestinationPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<double?>("DestinationRating")
+                        .HasColumnType("float");
+
+                    b.Property<string>("DestinationTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("IX_Wishlist_UserId");
+
+                    b.HasIndex("UserId", "DestinationId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Wishlist_User_Destination");
+
+                    b.ToTable("Wishlists");
+                });
+
             modelBuilder.Entity("WandSky.Core.Entities.Review", b =>
                 {
                     b.HasOne("WandSky.Core.Entities.User", "User")
@@ -256,6 +314,17 @@ namespace WandSky.Infrastructure.Migrations
                 {
                     b.HasOne("WandSky.Core.Entities.User", "User")
                         .WithMany("TravelPreferences")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WandSky.Core.Entities.Wishlist", b =>
+                {
+                    b.HasOne("WandSky.Core.Entities.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

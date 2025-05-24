@@ -63,6 +63,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 // 注册 Review 相关服务
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+builder.Services.AddScoped<IWishlistService, WishlistService>();
 
 // 添加身份验证
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
