@@ -67,16 +67,25 @@ export default function LoginForm({ submitError, setSubmitError, onSuccess }: Lo
     setSubmitError('');
     
     try {
+      console.log('发送登录请求，数据:', {
+        Email: loginForm.email,
+        Password: loginForm.password
+      });
+
       const result = await signIn('credentials', {
         redirect: false,
         email: loginForm.email,
         password: loginForm.password,
         callbackUrl: '/'
       });
+
+      console.log('登录结果:', result);
   
       if (result?.error) {
+        console.error('登录失败:', result.error);
         setSubmitError(result.error);
       } else if (result?.ok) {
+        console.log('登录成功');
         if (onSuccess) {
           onSuccess();
         } else {
@@ -84,7 +93,7 @@ export default function LoginForm({ submitError, setSubmitError, onSuccess }: Lo
         }
       }
     } catch (error) {
-      console.error('登录出错:', error);
+      console.error('登录请求出错:', error);
       setSubmitError('登录过程中发生错误，请稍后再试');
     } finally {
       setIsSubmitting(false);
@@ -97,7 +106,15 @@ export default function LoginForm({ submitError, setSubmitError, onSuccess }: Lo
       <p className="auth-subtitle">登录您的WandSky账户</p>
       
       {submitError && (
-        <div style={{ color: 'red', marginBottom: '15px' }}>{submitError}</div>
+        <div style={{ 
+          color: 'red', 
+          marginBottom: '15px',
+          padding: '10px',
+          borderRadius: '4px',
+          backgroundColor: '#f8d7da'
+        }}>
+          {submitError}
+        </div>
       )}
       
       <form className="auth-form" onSubmit={handleLoginSubmit}>

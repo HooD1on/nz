@@ -96,22 +96,35 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
     setSubmitError('');
     
     try {
+      console.log('发送注册请求，数据:', {
+        FirstName: signupForm.firstName,
+        LastName: signupForm.lastName,
+        Email: signupForm.email,
+        Password: signupForm.password,
+        ConfirmPassword: signupForm.confirmPassword
+      });
+
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstName: signupForm.firstName,
-          lastName: signupForm.lastName,
-          email: signupForm.email,
-          password: signupForm.password
+          FirstName: signupForm.firstName,        // ✅ 修改为后端期望的 PascalCase
+          LastName: signupForm.lastName,          // ✅ 修改为后端期望的 PascalCase
+          Email: signupForm.email,                // ✅ 修改为后端期望的 PascalCase
+          Password: signupForm.password,          // ✅ 修改为后端期望的 PascalCase
+          ConfirmPassword: signupForm.confirmPassword // ✅ 添加确认密码字段
         }),
       });
       
+      console.log('注册响应状态:', response.status);
+      
       const data: AuthResponse = await response.json();
+      console.log('注册响应数据:', data);
       
       if (data.success) {
+        console.log('注册成功');
         if (data.token) {
           localStorage.setItem('token', data.token);
           if (data.user) {
@@ -124,13 +137,16 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
             router.push('/');
           }
         } else {
+          // 注册成功但没有返回token，切换到登录页面
           setActiveTab('login');
+          setSubmitError('注册成功，请登录');
         }
       } else {
+        console.error('注册失败:', data.error);
         setSubmitError(data.error || '注册失败，请稍后再试');
       }
     } catch (error) {
-      console.error('注册出错:', error);
+      console.error('注册请求出错:', error);
       setSubmitError('注册过程中发生错误，请稍后再试');
     } finally {
       setIsSubmitting(false);
@@ -143,16 +159,24 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
       <p className="auth-subtitle">加入WandSky，开始您的冒险之旅</p>
       
       {submitError && (
-        <div style={{ color: 'red', marginBottom: '15px' }}>{submitError}</div>
+        <div style={{ 
+          color: submitError.includes('成功') ? 'green' : 'red', 
+          marginBottom: '15px',
+          padding: '10px',
+          borderRadius: '4px',
+          backgroundColor: submitError.includes('成功') ? '#d4edda' : '#f8d7da'
+        }}>
+          {submitError}
+        </div>
       )}
       
       <form className="auth-form" onSubmit={handleSignupSubmit}>
         <div className="form-field-group">
           <div className="form-field">
-            <label htmlFor="first-name">名字</label>
+            <label htmlFor="firstName">名字</label>
             <input 
               type="text" 
-              id="first-name" 
+              id="firstName" 
               placeholder="名字" 
               value={signupForm.firstName}
               onChange={handleSignupChange}
@@ -164,10 +188,10 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
           </div>
           
           <div className="form-field">
-            <label htmlFor="last-name">姓氏</label>
+            <label htmlFor="lastName">姓氏</label>
             <input 
               type="text" 
-              id="last-name" 
+              id="lastName" 
               placeholder="姓氏" 
               value={signupForm.lastName}
               onChange={handleSignupChange}
@@ -180,10 +204,10 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
         </div>
         
         <div className="form-field">
-          <label htmlFor="signup-email">邮箱地址</label>
+          <label htmlFor="email">邮箱地址</label>
           <input 
             type="email" 
-            id="signup-email" 
+            id="email" 
             placeholder="your@email.com" 
             value={signupForm.email}
             onChange={handleSignupChange}
@@ -195,10 +219,10 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
         </div>
         
         <div className="form-field">
-          <label htmlFor="signup-password">密码</label>
+          <label htmlFor="password">密码</label>
           <input 
             type="password" 
-            id="signup-password" 
+            id="password" 
             placeholder="创建密码" 
             value={signupForm.password}
             onChange={handleSignupChange}
@@ -211,10 +235,10 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
         </div>
         
         <div className="form-field">
-          <label htmlFor="confirm-password">确认密码</label>
+          <label htmlFor="confirmPassword">确认密码</label>
           <input 
             type="password" 
-            id="confirm-password" 
+            id="confirmPassword" 
             placeholder="确认您的密码" 
             value={signupForm.confirmPassword}
             onChange={handleSignupChange}
@@ -228,12 +252,12 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
         <div className="form-field checkbox">
           <input 
             type="checkbox" 
-            id="terms" 
+            id="agreeTerms" 
             checked={signupForm.agreeTerms}
             onChange={handleSignupChange}
             required 
           />
-          <label htmlFor="terms">
+          <label htmlFor="agreeTerms">
             我同意 <Link href="/terms">服务条款</Link> 和 <Link href="/privacy">隐私政策</Link>
           </label>
           {formErrors.agreeTerms && (
