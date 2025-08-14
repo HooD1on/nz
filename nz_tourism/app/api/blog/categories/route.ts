@@ -2,17 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const API_BASE_URL = process.env.BACKEND_API_URL?.replace(/\/$/, '') || 'http://localhost:5152';
 
-interface RouteParams {
-  params: {
-    slug: string;
-  }
-}
-
-export async function GET(req: NextRequest, { params }: RouteParams) {
+export async function GET(req: NextRequest) {
   try {
-    const { slug } = await params; // ✅ 添加 await
-    
-    const response = await fetch(`${API_BASE_URL}/api/blog/slug/${slug}`, {
+    const response = await fetch(`${API_BASE_URL}/api/blog/categories`, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -25,9 +17,9 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error fetching blog post:', error);
+    console.error('Error fetching categories:', error);
     return NextResponse.json(
-      { success: false, error: '获取博客文章失败' },
+      { success: false, error: '获取分类失败' },
       { status: 500 }
     );
   }

@@ -10,7 +10,7 @@ interface RouteParams {
 
 export async function GET(req: NextRequest, { params }: RouteParams) {
   try {
-    const { id } = params;
+    const { id } = await params; // ✅ 添加 await
     const { searchParams } = new URL(req.url);
     const limit = searchParams.get('limit') || '3';
     

@@ -4,15 +4,16 @@ const API_BASE_URL = process.env.BACKEND_API_URL?.replace(/\/$/, '') || 'http://
 
 interface RouteParams {
   params: {
-    slug: string;
+    id: string;
   }
 }
 
-export async function GET(req: NextRequest, { params }: RouteParams) {
+export async function POST(req: NextRequest, { params }: RouteParams) {
   try {
-    const { slug } = await params; // ✅ 添加 await
+    const { id } = await params; // ✅ 添加 await
     
-    const response = await fetch(`${API_BASE_URL}/api/blog/slug/${slug}`, {
+    const response = await fetch(`${API_BASE_URL}/api/blog/${id}/view`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       }
@@ -25,9 +26,9 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error fetching blog post:', error);
+    console.error('Error incrementing view count:', error);
     return NextResponse.json(
-      { success: false, error: '获取博客文章失败' },
+      { success: false, error: '更新浏览量失败' },
       { status: 500 }
     );
   }

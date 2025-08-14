@@ -12,7 +12,7 @@ interface RouteParams {
 
 export async function GET(req: NextRequest, { params }: RouteParams) {
   try {
-    const { id } = params;
+    const { id } = await params; // ✅ 添加 await
     
     const response = await fetch(`${API_BASE_URL}/api/blog/${id}/comments`, {
       headers: {

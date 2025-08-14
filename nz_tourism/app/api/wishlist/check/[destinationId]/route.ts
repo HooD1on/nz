@@ -21,7 +21,7 @@ export async function GET(
       return NextResponse.json({ isInWishlist: false });
     }
 
-    const destinationId = params.destinationId;
+    const { destinationId } = await params; // ✅ 添加 await
 
     const response = await fetch(`${API_BASE_URL}/api/wishlist/check/${destinationId}`, {
       headers: {
