@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WandSky.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d13321ca88c6df9385dccbe3b0338d0ddffda6e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+578831ad05ab4e50e5a1e9103211ec783bef830c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WandSky.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WandSky.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

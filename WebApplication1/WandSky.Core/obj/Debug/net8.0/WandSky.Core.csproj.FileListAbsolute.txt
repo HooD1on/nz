@@ -98,4 +98,3 @@ D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\refint\WandSky.
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\WandSky.Core.pdb
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\WandSky.Core.genruntimeconfig.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\ref\WandSky.Core.dll
-D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

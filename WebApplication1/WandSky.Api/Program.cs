@@ -65,6 +65,8 @@ builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
 builder.Services.AddScoped<IWishlistService, WishlistService>();
+// 注册博客服务
+builder.Services.AddScoped<IBlogService, BlogService>();
 
 // 添加身份验证
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -139,11 +141,14 @@ if (app.Environment.IsDevelopment())
         {
             var context = services.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
+            
+            // 添加博客示例数据
+            await WandSky.Infrastructure.Data.BlogDataSeeder.SeedBlogDataAsync(context);
         }
         catch (Exception ex)
         {
             var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "数据库迁移时发生错误");
+            logger.LogError(ex, "数据库迁移或种子数据初始化时发生错误");
         }
     }
 }

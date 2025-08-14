@@ -35,7 +35,7 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           {/* 导航处理组件 - 不渲染UI，只处理导航状态 */}
-          <NavigationHandler />
+          <NavigationHandler children={undefined} />
           
           <div className="layout-wrapper">
             <Navbar />

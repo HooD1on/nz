@@ -20,12 +20,22 @@ namespace WandSky.Infrastructure.Data
 
         public DbSet<Wishlist> Wishlists { get; set; }
 
+        // 新增博客相关DbSet
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             modelBuilder.ApplyConfiguration(new WishlistConfiguration());
+            
+            // 应用博客相关配置
+            modelBuilder.ApplyConfiguration(new BlogPostConfiguration());
+            modelBuilder.ApplyConfiguration(new BlogCommentConfiguration());
+            modelBuilder.ApplyConfiguration(new BlogCategoryConfiguration());
         }
     }
 }

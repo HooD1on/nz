@@ -39,6 +39,12 @@ namespace WandSky.Services
                     src.Images.Select(i => i.ImageUrl).ToList()))
                 .ForMember(dest => dest.IsLoggedInUser, opt => opt.MapFrom(src =>
                     src.UserId.HasValue)); // 修改这里，使用 HasValue 代替 string.IsNullOrEmpty
+
+            // 新增博客相关映射
+            CreateMap<BlogCategory, BlogCategoryDto>()
+                .ForMember(dest => dest.PostCount, opt => opt.Ignore()); // 在服务层单独计算
+
+            CreateMap<BlogCategoryCreateDto, BlogCategory>();
         }
     }
 }

@@ -1,5 +1,5 @@
 // nz_tourism/components/destination/DestinationPage.tsx
-// 修复版的DestinationPage组件
+// 修复版的DestinationPage组件 - 添加地图功能
 
 'use client';
 
@@ -8,6 +8,7 @@ import DestinationHeader from './DestinationHeader';
 import DestinationDetails from './DestinationDetails';
 import DestinationGallery from './DestinationGallery';
 import DestinationInfo from './DestinationInfo';
+import DestinationMap from './DestinationMap'; // 🔥 添加地图组件导入
 import RelatedPackages from './RelatedPackages';
 import DestinationAction from './DestinationAction';
 import ReviewSection from './ReviewSection';
@@ -46,6 +47,11 @@ interface DestinationPageProps {
       date: string;
       images?: string[];
     }[];
+    // 🔥 添加坐标字段
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
   };
   relatedPackages: {
     id: string;
@@ -65,10 +71,12 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
 }) => {
   const [activeSection, setActiveSection] = useState('overview');
 
+  // 🔥 添加地图导航选项
   const sections = [
     { id: 'overview', name: '概览' },
     { id: 'gallery', name: '图片' },
     { id: 'info', name: '详细信息' },
+    { id: 'map', name: '位置导航' }, // 🔥 新增地图导航
     { id: 'reviews', name: '评论' },
     { id: 'packages', name: '相关套餐' }
   ];
@@ -77,8 +85,12 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - headerOffset;
+
       window.scrollTo({
-        top: element.offsetTop - 100,
+        top: offsetPosition,
         behavior: 'smooth'
       });
     }
@@ -86,6 +98,7 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
 
   // 打印目的地ID，便于调试
   console.log('当前目的地ID:', destination.id);
+  console.log('目的地坐标:', destination.coordinates);
 
   return (
     <div className="destination-page">
@@ -134,18 +147,28 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
                 <DestinationGallery images={destination.images} />
               </section>
               
+              <section id="info" className="content-section">
+                <h2 className="section-title">详细信息</h2>
+                <DestinationInfo
+                  weather={destination.weather}
+                  transportation={destination.transportation}
+                  food={destination.food}
+                  accommodation={destination.accommodation}
+                  customs={destination.customs}
+                  destinationId={destination.id}
+                />
+              </section>
 
-<section id="info" className="content-section">
-  <h2 className="section-title">详细信息</h2>
-  <DestinationInfo
-    weather={destination.weather}
-    transportation={destination.transportation}
-    food={destination.food}
-    accommodation={destination.accommodation}
-    customs={destination.customs}
-    destinationId={destination.id} // 添加ID
-  />
-</section>
+              {/* 🔥 新增地图区域 */}
+              <section id="map" className="content-section">
+                <h2 className="section-title">位置与导航</h2>
+                <DestinationMap
+                  destinationId={destination.id}
+                  destinationTitle={destination.title}
+                  destinationLocation={destination.location}
+                  coordinates={destination.coordinates}
+                />
+              </section>
               
               <section id="reviews" className="content-section">
                 <h2 className="section-title">旅客评论</h2>
@@ -153,7 +176,7 @@ const DestinationPage: React.FC<DestinationPageProps> = ({
                   destinationId={destination.id}
                   reviews={destination.reviews.map(review => ({
                     ...review,
-                    isLoggedInUser: false // 添加缺失的属性
+                    isLoggedInUser: false
                   }))}
                   averageRating={destination.rating}
                   totalReviews={destination.reviewCount}
