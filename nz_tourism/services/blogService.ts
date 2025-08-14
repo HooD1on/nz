@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5152/api';
+
+const API_BASE_URL = '/api'; // ✅ 从 'http://localhost:5152/api' 改为 '/api'
 
 interface ServiceResponse<T> {
   success: boolean;
@@ -112,15 +113,17 @@ class BlogService {
     }
   }
 
-  private getAuthHeaders(): Record<string, string> {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        return { Authorization: `Bearer ${token}` };
-      }
-    }
-    return {};
-  }
+  // 🔥 关键修改：移除 getAuthHeaders 方法
+  // 认证现在由前端API路由处理，而不是在这里处理
+  // private getAuthHeaders(): Record<string, string> {
+  //   if (typeof window !== 'undefined') {
+  //     const token = localStorage.getItem('authToken');
+  //     if (token) {
+  //       return { Authorization: `Bearer ${token}` };
+  //     }
+  //   }
+  //   return {};
+  // }
 
   // 博客文章相关
   async getAllPosts(params: BlogSearchParams = {}): Promise<ServiceResponse<BlogPost[]>> {
@@ -151,7 +154,7 @@ class BlogService {
   async createPost(postData: BlogPostCreateDto): Promise<ServiceResponse<BlogPost>> {
     return this.makeRequest<BlogPost>('/blog', {
       method: 'POST',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
       body: JSON.stringify(postData),
     });
   }
@@ -159,7 +162,7 @@ class BlogService {
   async updatePost(id: string, postData: BlogPostCreateDto): Promise<ServiceResponse<BlogPost>> {
     return this.makeRequest<BlogPost>(`/blog/${id}`, {
       method: 'PUT',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
       body: JSON.stringify(postData),
     });
   }
@@ -167,21 +170,21 @@ class BlogService {
   async deletePost(id: string): Promise<ServiceResponse<boolean>> {
     return this.makeRequest<boolean>(`/blog/${id}`, {
       method: 'DELETE',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
     });
   }
 
   async publishPost(id: string): Promise<ServiceResponse<boolean>> {
     return this.makeRequest<boolean>(`/blog/${id}/publish`, {
       method: 'POST',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
     });
   }
 
   async unpublishPost(id: string): Promise<ServiceResponse<boolean>> {
     return this.makeRequest<boolean>(`/blog/${id}/unpublish`, {
       method: 'POST',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
     });
   }
 
@@ -207,7 +210,7 @@ class BlogService {
   async createComment(commentData: BlogCommentCreateDto): Promise<ServiceResponse<BlogComment>> {
     return this.makeRequest<BlogComment>('/blog/comments', {
       method: 'POST',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
       body: JSON.stringify(commentData),
     });
   }
@@ -215,14 +218,14 @@ class BlogService {
   async deleteComment(commentId: string): Promise<ServiceResponse<boolean>> {
     return this.makeRequest<boolean>(`/blog/comments/${commentId}`, {
       method: 'DELETE',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
     });
   }
 
   async approveComment(commentId: string): Promise<ServiceResponse<boolean>> {
     return this.makeRequest<boolean>(`/blog/comments/${commentId}/approve`, {
       method: 'POST',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
     });
   }
 
@@ -234,7 +237,7 @@ class BlogService {
   async createCategory(categoryData: Omit<BlogCategory, 'id' | 'postCount'>): Promise<ServiceResponse<BlogCategory>> {
     return this.makeRequest<BlogCategory>('/blog/categories', {
       method: 'POST',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
       body: JSON.stringify(categoryData),
     });
   }
@@ -242,7 +245,7 @@ class BlogService {
   async deleteCategory(id: string): Promise<ServiceResponse<boolean>> {
     return this.makeRequest<boolean>(`/blog/categories/${id}`, {
       method: 'DELETE',
-      headers: this.getAuthHeaders(),
+      // 🔥 关键修改：移除 this.getAuthHeaders()
     });
   }
 
@@ -266,4 +269,4 @@ export type {
   BlogPostCreateDto,
   BlogCommentCreateDto,
   ServiceResponse,
-}; 
+};

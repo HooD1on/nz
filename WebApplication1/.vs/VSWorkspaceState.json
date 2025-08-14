@@ -2,8 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\WandSky.Api",
-    "\\WandSky.Api\\Controllers"
+    "\\WandSky.Api\\Properties",
+    "\\WandSky.Core",
+    "\\WandSky.Infrastructure",
+    "\\WandSky.Services",
+    "\\WebApplication1",
+    "\\WebApplication1\\obj"
   ],
-  "SelectedNode": "\\WandSky.Api\\WandSky.Api.csproj",
+  "SelectedNode": "\\WandSky.Api",
   "PreviewInSolutionExplorer": false
 }
