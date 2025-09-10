@@ -128,7 +128,6 @@ D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\WandSky.Ser
 D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\WandSky.Services.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\WandSky.Services.pdb
 D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\AutoMapper.dll
-D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\Azure.Core.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\Azure.Identity.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Services\bin\Debug\net8.0\BCrypt.Net-Next.dll

@@ -1,0 +1,87 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net8.0\WandSky.Api.GlobalUsings.g.cs" />
+    <Compile Include="obj\Debug\net8.0\WebApplication1.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net8.0\appsettings.json" />
+    <Content Include="bin\Debug\net8.0\WebApplication1.deps.json" />
+    <Content Include="bin\Debug\net8.0\WebApplication1.runtimeconfig.json" />
+    <Content Include="bin\Debug\net8.0\WebApplication1.staticwebassets.endpoints.json" />
+    <Content Include="obj\Debug\net8.0\ApiEndpoints.json" />
+    <Content Include="obj\Debug\net8.0\EndpointInfo\WebApplication1.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.build.endpoints.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.build.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.references.upToDateCheck.txt" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.removed.txt" />
+    <Content Include="obj\Debug\net8.0\WebApplication1.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\WandSky.Api.csproj.nuget.dgspec.json" />
+    <Content Include="obj\WebApplication1.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0\Microsoft.OpenApi.dll" />
+    <None Include="bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll" />
+    <None Include="bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+    <None Include="bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+    <None Include="bin\Debug\net8.0\WebApplication1.dll" />
+    <None Include="bin\Debug\net8.0\WebApplication1.exe" />
+    <None Include="bin\Debug\net8.0\WebApplication1.pdb" />
+    <None Include="obj\Debug\net8.0\apphost.exe" />
+    <None Include="obj\Debug\net8.0\EndpointInfo\WebApplication1.OpenApiFiles.cache" />
+    <None Include="obj\Debug\net8.0\refint\WebApplication1.dll" />
+    <None Include="obj\Debug\net8.0\ref\WebApplication1.dll" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.build.WebApplication1.props" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebApplication1.props" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebApplication1.props" />
+    <None Include="obj\Debug\net8.0\WandSky.Api.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net8.0\WandSky.Api.assets.cache" />
+    <None Include="obj\Debug\net8.0\WandSky.Api.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net8.0\WandSky.Api.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net8.0\WebAppli.7D14BD69.Up2Date" />
+    <None Include="obj\Debug\net8.0\WebApplication1.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net8.0\WebApplication1.assets.cache" />
+    <None Include="obj\Debug\net8.0\WebApplication1.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net8.0\WebApplication1.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net8.0\WebApplication1.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net8.0\WebApplication1.dll" />
+    <None Include="obj\Debug\net8.0\WebApplication1.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net8.0\WebApplication1.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net8.0\WebApplication1.pdb" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\WandSky.Api.csproj.nuget.g.props" />
+    <None Include="obj\WandSky.Api.csproj.nuget.g.targets" />
+    <None Include="obj\WebApplication1.csproj.nuget.g.props" />
+    <None Include="obj\WebApplication1.csproj.nuget.g.targets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Stripe.net" Version="48.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WandSky.Core\WandSky.Core.csproj" />
+    <ProjectReference Include="..\WandSky.Infrastructure\WandSky.Infrastructure.csproj" />
+    <ProjectReference Include="..\WandSky.Services\WandSky.Services.csproj" />
+  </ItemGroup>
+
+</Project>

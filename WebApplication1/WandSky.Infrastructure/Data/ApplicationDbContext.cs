@@ -36,6 +36,8 @@ namespace WandSky.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new BlogPostConfiguration());
             modelBuilder.ApplyConfiguration(new BlogCommentConfiguration());
             modelBuilder.ApplyConfiguration(new BlogCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
+            modelBuilder.ApplyConfiguration(new BookingConfiguration());
         }
     }
 }

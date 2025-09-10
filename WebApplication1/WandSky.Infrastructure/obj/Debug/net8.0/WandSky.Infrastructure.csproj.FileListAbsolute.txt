@@ -368,4 +368,5 @@ D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\refin
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\WandSky.Infrastructure.pdb
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\WandSky.Infrastructure.genruntimeconfig.cache
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\ref\WandSky.Infrastructure.dll
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\bin\Debug\net8.0\AutoMapper.dll
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
