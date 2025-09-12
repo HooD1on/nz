@@ -11,17 +11,36 @@ import { SessionProvider } from "next-auth/react"
 import NavigationHandler from '../components/NavigationHandler'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { Elements } from '@stripe/react-stripe-js';
+import { getStripe } from '../lib/stripe';
+import { ReactNode } from 'react';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+// Stripe配置选项
+const stripeOptions = {
+  appearance: {
+    theme: 'stripe' as const,
+    variables: {
+      colorPrimary: '#0070f3',
+      colorBackground: '#ffffff',
+      colorText: '#30313d',
+      colorDanger: '#df1b41',
+      fontFamily: 'Ideal Sans, system-ui, sans-serif',
+      spacingUnit: '2px',
+      borderRadius: '4px',
+    }
+  },
+  loader: 'auto' as const,
+};
+
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
         <script dangerouslySetInnerHTML={{ __html: `
-          // 直接在HTML加载时执行，无需等待React
           (function() {
             var path = window.location.pathname;
             if (path === '/' || path === '') {
@@ -34,16 +53,17 @@ export default function RootLayout({
       </head>
       <body>
         <SessionProvider>
-          {/* 导航处理组件 - 不渲染UI，只处理导航状态 */}
-          <NavigationHandler children={undefined} />
-          
-          <div className="layout-wrapper">
-            <Navbar />
-            <main className="main-content">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <Elements stripe={getStripe()} options={stripeOptions}>
+            <NavigationHandler children={undefined} />
+                       
+            <div className="layout-wrapper">
+              <Navbar />
+              <div className="main-content">
+                {children}
+              </div>
+              <Footer />
+            </div>
+          </Elements>
         </SessionProvider>
       </body>
     </html>
