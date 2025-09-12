@@ -13,9 +13,15 @@ namespace WandSky.Infrastructure.Data
         // 现有的DbSet (保持不变)
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Review> Reviews { get; set; } = null!;
-        public DbSet<WishlistItem> WishlistItems { get; set; } = null!;
+        public DbSet<Wishlist> Wishlists { get; set; } = null!;
         public DbSet<BlogPost> BlogPosts { get; set; } = null!;
         public DbSet<BlogComment> BlogComments { get; set; } = null!;
+
+        public DbSet<BlogCategory> BlogCategories { get; set; } = null!;
+
+        // 添加缺失的用户相关 DbSet  
+        public DbSet<UserPreferences> UserPreferences { get; set; } = null!;
+        public DbSet<UserTravelPreference> UserTravelPreferences { get; set; } = null!;
 
         // 新增的Stripe支付相关DbSet
         public DbSet<Payment> Payments { get; set; } = null!;
@@ -25,11 +31,13 @@ namespace WandSky.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
+
             // 现有的实体配置 (保持不变)
             ConfigureUserEntity(modelBuilder);
             ConfigureReviewEntity(modelBuilder);
             ConfigureWishlistEntity(modelBuilder);
             ConfigureBlogEntity(modelBuilder);
+            ConfigureUserRelatedEntities(modelBuilder);
 
             // 新增的支付相关实体配置
             ConfigurePaymentEntity(modelBuilder);
@@ -41,11 +49,12 @@ namespace WandSky.Infrastructure.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Username).IsRequired().HasMaxLength(100);
+                // 移除 Username 相关配置，因为 User 实体中没有这个属性
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(255);
                 entity.Property(e => e.PasswordHash).IsRequired();
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
                 entity.HasIndex(e => e.Email).IsUnique();
-                entity.HasIndex(e => e.Username).IsUnique();
             });
         }
 
@@ -55,7 +64,7 @@ namespace WandSky.Infrastructure.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Rating).IsRequired();
-                entity.Property(e => e.Comment).HasMaxLength(1000);
+                entity.Property(e => e.Content).HasMaxLength(1000);
 
                 entity.HasOne(e => e.User)
                     .WithMany()
@@ -66,7 +75,7 @@ namespace WandSky.Infrastructure.Data
 
         private void ConfigureWishlistEntity(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<WishlistItem>(entity =>
+            modelBuilder.Entity<Wishlist>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.DestinationId).IsRequired();
@@ -93,6 +102,16 @@ namespace WandSky.Infrastructure.Data
                     .WithMany()
                     .HasForeignKey(e => e.AuthorId)
                     .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<BlogCategory>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Slug).IsRequired().HasMaxLength(120);
+                entity.Property(e => e.Description).IsRequired().HasMaxLength(500);
+                entity.Property(e => e.Color).IsRequired().HasMaxLength(20);
+                entity.HasIndex(e => e.Slug).IsUnique();
             });
 
             modelBuilder.Entity<BlogComment>(entity =>
@@ -162,6 +181,29 @@ namespace WandSky.Infrastructure.Data
                 entity.HasIndex(e => e.StripePaymentIntentId).IsUnique();
                 entity.HasIndex(e => e.UserId);
                 entity.HasIndex(e => e.Status);
+            });
+        }
+
+
+        private void ConfigureUserRelatedEntities(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserPreferences>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasOne(e => e.User)
+                    .WithOne(u => u.Preferences)
+                    .HasForeignKey<UserPreferences>(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<UserTravelPreference>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Preference).IsRequired();
+                entity.HasOne(e => e.User)
+                    .WithMany(u => u.TravelPreferences)
+                    .HasForeignKey(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
 

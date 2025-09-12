@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3A059678-D9EA-423C-923E-28E4BD391C94}|WandSky.Api\\WandSky.Api.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A059678-D9EA-423C-923E-28E4BD391C94}|WandSky.Api\\WandSky.Api.csproj|solutionrelative:wandsky.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|solutionrelative:wandsky.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D1D5DDE-D8C3-4337-A4CE-B2B64D8065AD}|WandSky.Core\\WandSky.Core.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.core\\entitiies\\wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D1D5DDE-D8C3-4337-A4CE-B2B64D8065AD}|WandSky.Core\\WandSky.Core.csproj|solutionrelative:wandsky.core\\entitiies\\wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3A059678-D9EA-423C-923E-28E4BD391C94}|WandSky.Api\\WandSky.Api.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.api\\wandsky.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{3A059678-D9EA-423C-923E-28E4BD391C94}|WandSky.Api\\WandSky.Api.csproj|solutionrelative:wandsky.api\\wandsky.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -25,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|solutionrelative:wandsky.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|solutionrelative:wandsky.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3A059678-D9EA-423C-923E-28E4BD391C94}|WandSky.Api\\WandSky.Api.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A059678-D9EA-423C-923E-28E4BD391C94}|WandSky.Api\\WandSky.Api.csproj|solutionrelative:wandsky.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D1D5DDE-D8C3-4337-A4CE-B2B64D8065AD}|WandSky.Core\\WandSky.Core.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.core\\interfaces\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -246,10 +250,6 @@
       "RelativeMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|solutionrelative:wandsky.infrastructure\\wandsky.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D1D5DDE-D8C3-4337-A4CE-B2B64D8065AD}|WandSky.Core\\WandSky.Core.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.core\\entitiies\\wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D1D5DDE-D8C3-4337-A4CE-B2B64D8065AD}|WandSky.Core\\WandSky.Core.csproj|solutionrelative:wandsky.core\\entitiies\\wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|d:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\webapplication1\\wandsky.infrastructure\\data\\config\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABD0F222-7786-4796-B09A-43E3C797DE77}|WandSky.Infrastructure\\WandSky.Infrastructure.csproj|solutionrelative:wandsky.infrastructure\\data\\config\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -413,11 +413,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "WandSky.Api.csproj",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\WandSky.Api.csproj",
               "RelativeDocumentMoniker": "WandSky.Api\\WandSky.Api.csproj",
@@ -432,6 +432,85 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "WandSky.Services\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\Services\\PaymentService.cs",
+              "RelativeToolTip": "WandSky.Services\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAqwA8BAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T10:18:02.918Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Wishlist.cs",
+              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Wishlist.cs",
+              "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\Wishlist.cs",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Wishlist.cs",
+              "RelativeToolTip": "WandSky.Core\\Entitiies\\Wishlist.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T10:03:18.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAAAOQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T11:19:02.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAUwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T12:08:56.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Program.cs",
+              "RelativeDocumentMoniker": "WandSky.Api\\Program.cs",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Program.cs",
+              "RelativeToolTip": "WandSky.Api\\Program.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAQwJIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-14T12:57:22.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "WandSky.Services\\PaymentService.cs",
+              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\PaymentService.cs",
+              "RelativeToolTip": "WandSky.Services\\PaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:00:37.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "BookingRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\BookingRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Repositories\\BookingRepository.cs",
@@ -444,43 +523,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PaymentRepository.cs",
-              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "RelativeDocumentMoniker": "WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "RelativeToolTip": "WandSky.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAUwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:08:56.672Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PaymentService.cs",
-              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\PaymentService.cs",
-              "RelativeDocumentMoniker": "WandSky.Services\\PaymentService.cs",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\PaymentService.cs",
-              "RelativeToolTip": "WandSky.Services\\PaymentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T05:00:37.527Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PaymentService.cs",
-              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\Services\\PaymentService.cs",
-              "RelativeDocumentMoniker": "WandSky.Services\\Services\\PaymentService.cs",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\Services\\PaymentService.cs",
-              "RelativeToolTip": "WandSky.Services\\Services\\PaymentService.cs",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAqwA8BAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T10:18:02.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\Program.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\Program.cs",
@@ -492,31 +534,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "WandSky.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAANYAAAAAAAAAAAAQwO0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T11:19:02.139Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Program.cs",
-              "RelativeDocumentMoniker": "WandSky.Api\\Program.cs",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Program.cs",
-              "RelativeToolTip": "WandSky.Api\\Program.cs",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAQwOgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-14T12:57:22.955Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "IBookingRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Repositories\\IBookingRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Repositories\\IBookingRepository.cs",
@@ -528,7 +546,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "IPaymentRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Repositories\\IPaymentRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Repositories\\IPaymentRepository.cs",
@@ -540,7 +558,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "IPaymentService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\Interfaces\\IPaymentService.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\Interfaces\\IPaymentService.cs",
@@ -552,7 +570,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "CreatePaymentIntentRequest.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\DTOs\\Payment\\CreatePaymentIntentRequest.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\DTOs\\Payment\\CreatePaymentIntentRequest.cs",
@@ -564,7 +582,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "IRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\Interfaces\\IRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Repositories\\Interfaces\\IRepository.cs",
@@ -576,7 +594,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "PaymentsController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Controllers\\PaymentsController.cs",
               "RelativeDocumentMoniker": "WandSky.Api\\Controllers\\PaymentsController.cs",
@@ -588,7 +606,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Repositories\\UserRepository.cs",
@@ -600,7 +618,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "WandSky.Services.csproj",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\WandSky.Services.csproj",
               "RelativeDocumentMoniker": "WandSky.Services\\WandSky.Services.csproj",
@@ -613,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "PaymentConfiguration.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\Config\\PaymentConfiguration.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\Config\\PaymentConfiguration.cs",
@@ -625,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "BookingConfiguration.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\Config\\BookingConfiguration.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\Config\\BookingConfiguration.cs",
@@ -637,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Booking.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Booking.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\Booking.cs",
@@ -649,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Payment.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Payment.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\Payment.cs",
@@ -661,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "BookingsController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Controllers\\BookingsController.cs",
               "RelativeDocumentMoniker": "WandSky.Api\\Controllers\\BookingsController.cs",
@@ -673,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "PackagesController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Controllers\\PackagesController.cs",
               "RelativeDocumentMoniker": "WandSky.Api\\Controllers\\PackagesController.cs",
@@ -685,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "MembershipController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Controllers\\MembershipController.cs",
               "RelativeDocumentMoniker": "WandSky.Api\\Controllers\\MembershipController.cs",
@@ -697,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "MembershipConfiguration.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\Config\\MembershipConfiguration.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\Config\\MembershipConfiguration.cs",
@@ -709,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "PackageConfiguration.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\Config\\PackageConfiguration.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\Config\\PackageConfiguration.cs",
@@ -721,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\EmailService.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\EmailService.cs",
@@ -733,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "NotificationService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\NotificationService.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\NotificationService.cs",
@@ -745,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "StripeService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\StripeService.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\StripeService.cs",
@@ -757,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "PackageService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\PackageService.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\PackageService.cs",
@@ -769,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "BookingService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Services\\BookingService.cs",
               "RelativeDocumentMoniker": "WandSky.Services\\BookingService.cs",
@@ -781,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "IPackageRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Repositories\\IPackageRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Repositories\\IPackageRepository.cs",
@@ -793,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "IStripeService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Services\\IStripeService.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Services\\IStripeService.cs",
@@ -805,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "INotificationService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Services\\INotificationService.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Services\\INotificationService.cs",
@@ -817,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "IPackageService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Services\\IPackageService.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Services\\IPackageService.cs",
@@ -829,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "IBookingService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Services\\IBookingService.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Services\\IBookingService.cs",
@@ -841,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "IPaymentService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Services\\IPaymentService.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Services\\IPaymentService.cs",
@@ -853,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "PackagePricingDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\Package\\PackagePricingDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\Package\\PackagePricingDto.cs",
@@ -865,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "PackageListDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\Package\\PackageListDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\Package\\PackageListDto.cs",
@@ -877,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "PackageDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\Package\\PackageDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\Package\\PackageDto.cs",
@@ -889,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "CancelBookingDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\Booking\\CancelBookingDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\Booking\\CancelBookingDto.cs",
@@ -901,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "BookingListDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\Booking\\BookingListDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\Booking\\BookingListDto.cs",
@@ -913,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "BookingDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\Booking\\BookingDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\Booking\\BookingDto.cs",
@@ -925,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "PaymentMethod.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\PaymentMethod.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\PaymentMethod.cs",
@@ -937,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "Membership.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Membership.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\Membership.cs",
@@ -949,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "Package.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Package.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\Package.cs",
@@ -961,7 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "WandSky.Core.csproj",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\WandSky.Core.csproj",
               "RelativeDocumentMoniker": "WandSky.Core\\WandSky.Core.csproj",
@@ -974,7 +992,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "tasks.vs.json",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\.vs\\tasks.vs.json",
               "RelativeDocumentMoniker": ".vs\\tasks.vs.json",
@@ -986,7 +1004,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\appsettings.json",
               "RelativeDocumentMoniker": "WandSky.Core\\appsettings.json",
@@ -998,7 +1016,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "BlogController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Controllers\\BlogController.cs",
               "RelativeDocumentMoniker": "WandSky.Api\\Controllers\\BlogController.cs",
@@ -1010,7 +1028,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "WishlistConfiguration.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\Data\\Config\\WishlistConfiguration.cs",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\Data\\Config\\WishlistConfiguration.cs",
@@ -1022,7 +1040,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Program.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Program.cs",
@@ -1034,7 +1052,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "WandSky.Api\\Properties\\launchSettings.json",
@@ -1046,7 +1064,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "IWishlistService.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Services\\IWishlistService.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Services\\IWishlistService.cs",
@@ -1058,7 +1076,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "IWishlistRepository.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Interfaces\\Repositories\\IWishlistRepository.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\Interfaces\\Repositories\\IWishlistRepository.cs",
@@ -1070,7 +1088,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "WishlistDto.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\DTOs\\WishlistDto.cs",
               "RelativeDocumentMoniker": "WandSky.Core\\DTOs\\WishlistDto.cs",
@@ -1082,7 +1100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "WishlistController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Api\\Controllers\\WishlistController.cs",
               "RelativeDocumentMoniker": "WandSky.Api\\Controllers\\WishlistController.cs",
@@ -1094,7 +1112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "WandSky.Infrastructure.csproj",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
               "RelativeDocumentMoniker": "WandSky.Infrastructure\\WandSky.Infrastructure.csproj",
@@ -1104,18 +1122,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-03-23T14:35:44.669Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "Wishlist.cs",
-              "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Wishlist.cs",
-              "RelativeDocumentMoniker": "WandSky.Core\\Entitiies\\Wishlist.cs",
-              "ToolTip": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\nz\\WebApplication1\\WandSky.Core\\Entitiies\\Wishlist.cs",
-              "RelativeToolTip": "WandSky.Core\\Entitiies\\Wishlist.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T10:03:18.603Z"
             },
             {
               "$type": "Document",
@@ -1239,7 +1245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "Microsoft.NET.Sdk.DefaultItems.Shared.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets",
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets",
@@ -1573,7 +1579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "20250328042414_AddUserProfileFields.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\WebApplication1\\WandSky.Infrastructure\\Migrations\\20250328042414_AddUserProfileFields.cs",
               "RelativeDocumentMoniker": "..\\..\\WebApplication1\\WandSky.Infrastructure\\Migrations\\20250328042414_AddUserProfileFields.cs",
@@ -1584,7 +1590,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "20250328042606_InitialCreate.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\WebApplication1\\WandSky.Infrastructure\\Migrations\\20250328042606_InitialCreate.cs",
               "RelativeDocumentMoniker": "..\\..\\WebApplication1\\WandSky.Infrastructure\\Migrations\\20250328042606_InitialCreate.cs",
@@ -1607,7 +1613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\WebApplication1\\WebApplication1\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "..\\..\\WebApplication1\\WebApplication1\\Controllers\\AuthController.cs",
@@ -1630,7 +1636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u65C5\u6E38\u8F6F\u4EF6\\WebApplication1\\WebApplication1\\Program.cs",
               "RelativeDocumentMoniker": "..\\..\\WebApplication1\\WebApplication1\\Program.cs",
@@ -1638,10 +1644,6 @@
               "RelativeToolTip": "..\\..\\WebApplication1\\WebApplication1\\Program.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:02:55.701Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

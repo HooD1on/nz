@@ -143,9 +143,7 @@ builder.Services.AddSwaggerGen(c =>
 // 10. 日志配置
 builder.Services.AddLogging();
 
-// 11. 健康检查
-builder.Services.AddHealthChecks()
-    .AddDbContextCheck<ApplicationDbContext>();
+
 
 // ===========================================
 // 🚀 应用构建和配置 (App Configuration)
