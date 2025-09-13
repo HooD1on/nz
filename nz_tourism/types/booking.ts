@@ -2,56 +2,48 @@ export interface BookingFormData {
   customerName: string;
   email: string;
   phone: string;
-  travelDate: string;
   travelers: number;
+  travelDate: string; // ISO string format
   specialRequests?: string;
+}
+
+export interface CreateBookingRequest {
+  paymentIntentId: string;
+  packageId: string;
+  bookingData: BookingFormData;
+  totalAmount: number;
 }
 
 export interface Booking {
   id: string;
+  bookingReference: string;
+  userId: string;
+  paymentId: string;
   packageId: string;
-  packageTitle: string;
-  status: BookingStatus;
-  totalAmount: number;
-  currency: string;
   customerName: string;
   email: string;
   phone: string;
-  travelDate: string;
   travelers: number;
+  travelDate: string;
+  totalAmount: number;
+  status: BookingStatus;
   specialRequests?: string;
-  bookingReference: string;
   createdAt: string;
-  confirmedAt?: string;
-  cancelledAt?: string;
-  cancellationReason?: string;
-  payment: {
-    id: string;
-    status: string;
-    paidAt?: string;
-  };
+  updatedAt: string;
 }
 
 export enum BookingStatus {
   Pending = 'Pending',
   Confirmed = 'Confirmed',
-  InProgress = 'InProgress',
+  Canceled = 'Canceled',
   Completed = 'Completed',
-  Cancelled = 'Cancelled',
   Refunded = 'Refunded'
 }
 
-export interface BookingListResponse {
-  items: Booking[];
-  totalItems: number;
-  currentPage: number;
-  pageSize: number;
-  totalPages: number;
+export interface CreateBookingResponse {
+  success: boolean;
+  booking?: Booking;
+  error?: string;
 }
 
-export interface CreateBookingRequest {
-  packageId: string;
-  bookingData: BookingFormData;
-  paymentIntentId: string;
-  status: string;
-}
+

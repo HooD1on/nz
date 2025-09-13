@@ -33,3 +33,26 @@ export interface CreatePaymentIntentRequest {
   currency: string;
   bookingData: BookingFormData;
 }
+
+
+export interface UpdatePaymentStatusRequest {
+  paymentIntentId: string;
+  status: 'succeeded' | 'failed' | 'canceled';
+}
+
+export interface PaymentStatusResponse {
+  paymentIntentId: string;
+  status: string;
+  amount: number;
+  currency: string;
+  paidAt?: string;
+  failureReason?: string;
+}
+
+export interface StripePaymentIntentResponse {
+  id: string;
+  status: string;
+  amount: number;
+  currency: string;
+  created: number;
+}

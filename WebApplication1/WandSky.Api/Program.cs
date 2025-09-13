@@ -41,6 +41,8 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 // 5. 现有Service注册
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -49,11 +51,60 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<WandSky.Services.Interfaces.IPaymentService, WandSky.Services.Services.PaymentService>();
+builder.Services.AddScoped<WandSky.Services.Interfaces.IBookingService, WandSky.Services.Services.BookingService>();
 
-// 6. 创建临时的Stripe支付服务 (避免冲突)
-// 暂时注释掉Stripe相关服务，等Repository问题解决后再添加
-// builder.Services.AddScoped<IStripePaymentService, StripePaymentService>();
+// 6. Stripe 配置验证和初始化
+var stripeSecretKey = builder.Configuration["Stripe:SecretKey"];
+var stripePublishableKey = builder.Configuration["Stripe:PublishableKey"];
 
+if (string.IsNullOrEmpty(stripeSecretKey))
+{
+    throw new InvalidOperationException("Stripe SecretKey 未在 appsettings.json 中配置。请检查 Stripe:SecretKey 配置项。");
+}
+
+if (string.IsNullOrEmpty(stripePublishableKey))
+{
+    throw new InvalidOperationException("Stripe PublishableKey 未在 appsettings.json 中配置。请检查 Stripe:PublishableKey 配置项。");
+}
+
+// 验证 Stripe 密钥格式
+if (!stripeSecretKey.StartsWith("sk_test_") && !stripeSecretKey.StartsWith("sk_live_"))
+{
+    throw new InvalidOperationException("Stripe SecretKey 格式无效。应该以 sk_test_ 或 sk_live_ 开头。");
+}
+
+if (!stripePublishableKey.StartsWith("pk_test_") && !stripePublishableKey.StartsWith("pk_live_"))
+{
+    throw new InvalidOperationException("Stripe PublishableKey 格式无效。应该以 pk_test_ 或 pk_live_ 开头。");
+}
+
+// 检查环境一致性
+var isSecretKeyTest = stripeSecretKey.StartsWith("sk_test_");
+var isPublishableKeyTest = stripePublishableKey.StartsWith("pk_test_");
+
+if (isSecretKeyTest != isPublishableKeyTest)
+{
+    throw new InvalidOperationException("Stripe 密钥环境不一致。SecretKey 和 PublishableKey 必须都是测试环境或都是生产环境。");
+}
+
+// 记录配置状态（安全地记录，不暴露完整密钥）
+var environment = isSecretKeyTest ? "测试环境" : "生产环境";
+var logger = LoggerFactory.Create(config => config.AddConsole()).CreateLogger("Startup");
+logger.LogInformation("Stripe 配置验证通过 ({Environment})", environment);
+logger.LogInformation("Secret Key: {SecretKeyPrefix}...", stripeSecretKey.Substring(0, 12));
+logger.LogInformation("Publishable Key: {PublishableKeyPrefix}...", stripePublishableKey.Substring(0, 12));
+
+// Webhook 密钥配置 (可选，无 Webhook 方案下可以留空)
+var webhookSecret = builder.Configuration["Stripe:WebhookSecret"];
+if (!string.IsNullOrEmpty(webhookSecret))
+{
+    logger.LogInformation("Webhook Secret: {WebhookSecretPrefix}... (已配置，但当前未使用)", webhookSecret.Substring(0, 8));
+}
+else
+{
+    logger.LogInformation("Webhook Secret 未配置 (无 Webhook 方案，正常)");
+}
 // 7. 认证配置
 var jwtKey = builder.Configuration["AppSettings:Token"];
 if (string.IsNullOrEmpty(jwtKey))

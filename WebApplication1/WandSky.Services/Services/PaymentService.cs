@@ -16,6 +16,157 @@ namespace WandSky.Services.Services
         private readonly IBookingRepository _bookingRepository;
         private readonly ILogger<PaymentService> _logger;
 
+
+
+
+        public async Task<Payment?> GetPaymentByStripeIdAsync(string stripePaymentIntentId, Guid userId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(stripePaymentIntentId))
+                {
+                    throw new ArgumentException("PaymentIntentId 不能为空", nameof(stripePaymentIntentId));
+                }
+
+                var payment = await _paymentRepository.GetByStripeIdAsync(stripePaymentIntentId);
+
+                if (payment == null)
+                {
+                    _logger.LogWarning("支付记录不存在: {PaymentIntentId}", stripePaymentIntentId);
+                    return null;
+                }
+
+                if (payment.UserId != userId)
+                {
+                    _logger.LogWarning("用户无权访问此支付记录: PaymentIntentId={PaymentIntentId}, UserId={UserId}",
+                        stripePaymentIntentId, userId);
+                    return null;
+                }
+
+                return payment;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "获取支付记录失败: PaymentIntentId={PaymentIntentId}", stripePaymentIntentId);
+                throw;
+            }
+        }
+
+        public async Task<PaymentIntent> GetStripePaymentIntentAsync(string paymentIntentId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(paymentIntentId))
+                {
+                    throw new ArgumentException("PaymentIntentId 不能为空", nameof(paymentIntentId));
+                }
+
+                var service = new PaymentIntentService();
+                var paymentIntent = await service.GetAsync(paymentIntentId);
+
+                _logger.LogInformation("从 Stripe 获取支付意图成功: {PaymentIntentId}, Status: {Status}",
+                    paymentIntentId, paymentIntent.Status);
+
+                return paymentIntent;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "从 Stripe 获取支付意图失败: PaymentIntentId={PaymentIntentId}", paymentIntentId);
+                throw;
+            }
+        }
+
+        public async Task UpdatePaymentStatusAsync(string paymentIntentId, string status)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(paymentIntentId))
+                {
+                    throw new ArgumentException("PaymentIntentId 不能为空", nameof(paymentIntentId));
+                }
+
+                if (string.IsNullOrEmpty(status))
+                {
+                    throw new ArgumentException("Status 不能为空", nameof(status));
+                }
+
+                var payment = await _paymentRepository.GetByStripeIdAsync(paymentIntentId);
+
+                if (payment == null)
+                {
+                    throw new ArgumentException($"支付记录不存在: {paymentIntentId}");
+                }
+
+                // 解析支付状态
+                if (!Enum.TryParse<PaymentStatus>(status, true, out var paymentStatus))
+                {
+                    throw new ArgumentException($"无效的支付状态: {status}");
+                }
+
+                var oldStatus = payment.Status;
+                payment.Status = paymentStatus;
+
+                // 如果状态变为成功，设置支付时间
+                if (paymentStatus == PaymentStatus.Succeeded && payment.PaidAt == null)
+                {
+                    payment.PaidAt = DateTime.UtcNow;
+                }
+
+                await _paymentRepository.UpdateAsync(payment);
+
+                _logger.LogInformation("支付状态更新成功: PaymentIntentId={PaymentIntentId}, {OldStatus} -> {NewStatus}",
+                    paymentIntentId, oldStatus, paymentStatus);
+
+                // 如果支付成功，可以触发其他业务逻辑
+                if (paymentStatus == PaymentStatus.Succeeded && oldStatus != PaymentStatus.Succeeded)
+                {
+                    await OnPaymentSucceeded(payment);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "更新支付状态失败: PaymentIntentId={PaymentIntentId}, Status={Status}",
+                    paymentIntentId, status);
+                throw;
+            }
+        }
+
+        public async Task<bool> ValidatePaymentOwnershipAsync(string paymentIntentId, Guid userId)
+        {
+            try
+            {
+                var payment = await GetPaymentByStripeIdAsync(paymentIntentId, userId);
+                return payment != null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "验证支付所有权失败: PaymentIntentId={PaymentIntentId}, UserId={UserId}",
+                    paymentIntentId, userId);
+                return false;
+            }
+        }
+
+        // 🆕 私有方法：处理支付成功事件
+        private async Task OnPaymentSucceeded(Payment payment)
+        {
+            try
+            {
+                _logger.LogInformation("触发支付成功事件处理: PaymentId={PaymentId}", payment.Id);
+
+                // 这里可以添加支付成功后的业务逻辑
+                // 例如：发送确认邮件、更新库存等
+
+                // 暂时只记录日志
+                _logger.LogInformation("支付成功事件处理完成: PaymentId={PaymentId}, Amount={Amount}",
+                    payment.Id, payment.Amount);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "处理支付成功事件失败: PaymentId={PaymentId}", payment.Id);
+                // 不重新抛出异常，避免影响主流程
+            }
+        }
+
         public PaymentService(
             IConfiguration configuration,
             IPaymentRepository paymentRepository,

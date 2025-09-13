@@ -1,4 +1,6 @@
 ﻿// WandSky.Services/Interfaces/IPaymentService.cs
+using Stripe;
+using WandSky.Core.Entities;
 using WandSky.Services.DTOs.Payment;
 
 namespace WandSky.Services.Interfaces
@@ -27,5 +29,11 @@ namespace WandSky.Services.Interfaces
         /// <param name="userId">用户ID</param>
         /// <returns>支付状态响应</returns>
         Task<PaymentStatusResponse> GetPaymentStatusAsync(string paymentIntentId, Guid userId);
+
+
+        Task<Payment?> GetPaymentByStripeIdAsync(string stripePaymentIntentId, Guid userId);
+        Task<PaymentIntent> GetStripePaymentIntentAsync(string paymentIntentId);
+        Task UpdatePaymentStatusAsync(string paymentIntentId, string status);
+        Task<bool> ValidatePaymentOwnershipAsync(string paymentIntentId, Guid userId);
     }
 }
