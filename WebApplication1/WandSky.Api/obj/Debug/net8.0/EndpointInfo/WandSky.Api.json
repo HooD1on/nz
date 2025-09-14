@@ -2,6 +2,7 @@
   "openapi": "3.0.4",
   "info": {
     "title": "WandSky API",
+    "description": "新西兰旅游网站API",
     "version": "v1"
   },
   "paths": {
@@ -1023,6 +1024,190 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Bookings/create": {
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookingRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookingRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Bookings/{id}": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Bookings/user": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/create-payment-intent": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentIntentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentIntentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentIntentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/update-status": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentStatusRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentStatusRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/stripe-status/{paymentIntentId}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "paymentIntentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/webhook": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/status/{paymentIntentId}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "paymentIntentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -2129,6 +2314,86 @@
         },
         "additionalProperties": false
       },
+      "BookingDataDto": {
+        "required": [
+          "customerName",
+          "email",
+          "phone",
+          "travelDate",
+          "travelers"
+        ],
+        "type": "object",
+        "properties": {
+          "customerName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "travelDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "travelers": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "specialRequests": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingFormData": {
+        "required": [
+          "customerName",
+          "email",
+          "phone",
+          "travelDate",
+          "travelers"
+        ],
+        "type": "object",
+        "properties": {
+          "customerName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "travelers": {
+            "maximum": 20,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "travelDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "specialRequests": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BooleanServiceResponse": {
         "type": "object",
         "properties": {
@@ -2159,6 +2424,62 @@
           "newPassword": {
             "minLength": 8,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateBookingRequest": {
+        "required": [
+          "bookingData",
+          "packageId",
+          "paymentIntentId",
+          "totalAmount"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentIntentId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "packageId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bookingData": {
+            "$ref": "#/components/schemas/BookingFormData"
+          },
+          "totalAmount": {
+            "minimum": 0.01,
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePaymentIntentRequest": {
+        "required": [
+          "amount",
+          "bookingData",
+          "currency",
+          "packageId"
+        ],
+        "type": "object",
+        "properties": {
+          "packageId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "amount": {
+            "minimum": 0.01,
+            "type": "number",
+            "format": "double"
+          },
+          "currency": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bookingData": {
+            "$ref": "#/components/schemas/BookingDataDto"
           }
         },
         "additionalProperties": false
@@ -2356,6 +2677,25 @@
               "type": "string"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePaymentStatusRequest": {
+        "required": [
+          "paymentIntentId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentIntentId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "status": {
+            "minLength": 1,
+            "pattern": "^(succeeded|failed|canceled)$",
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2643,7 +2983,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "JWT Authorization header using the Bearer scheme",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
         "name": "Authorization",
         "in": "header"
       }

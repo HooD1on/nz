@@ -233,7 +233,6 @@ app.UseAuthorization();
 
 // 路由和控制器
 app.MapControllers();
-app.MapHealthChecks("/health");
 
 // 4. 数据库初始化
 using (var scope = app.Services.CreateScope())
