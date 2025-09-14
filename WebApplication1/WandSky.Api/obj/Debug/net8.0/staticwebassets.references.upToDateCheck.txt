@@ -334,3 +334,15 @@ D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebas
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
 D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Services\obj\Debug\net8.0\staticwebassets.build.json

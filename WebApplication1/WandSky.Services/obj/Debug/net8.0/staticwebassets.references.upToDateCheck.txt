@@ -216,3 +216,11 @@ D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
 D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
 D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Core\obj\Debug\net8.0\staticwebassets.build.json
+D:\旅游软件\nz\WebApplication1\WandSky.Infrastructure\obj\Debug\net8.0\staticwebassets.build.json

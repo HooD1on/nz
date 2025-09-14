@@ -35,10 +35,9 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
   const router = useRouter();
 
   const handleBookNow = () => {
-    // 跳转到预订页面，传递套餐ID
-    router.push(`/booking?packageId=${packageData.id}&travelers=${travelers}`);
+    // 使用现有的套餐特定预订页面路由
+    router.push(`/packages/${packageData.id}/booking?travelers=${travelers}`);
   };
-
   const totalPrice = packageData.price * travelers;
 
   return (
