@@ -984,3 +984,6 @@ html[data-homepage="true"] .navbar .sign-in-btn:hover {
         margin-top: 10px;
     }
 }
+
+
+@import '../styles/package-details.css';

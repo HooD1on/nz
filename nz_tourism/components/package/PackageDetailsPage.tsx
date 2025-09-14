@@ -1,4 +1,5 @@
-// nz_tourism/components/package/PackageDetailsPage.tsx
+// 1. 修复 nz_tourism/components/package/PackageDetailsPage.tsx 文件
+
 'use client';
 
 import { useState } from 'react';
@@ -34,10 +35,11 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
   const [travelers, setTravelers] = useState(2);
   const router = useRouter();
 
+  // 🔥 修复：更正预订页面路径
   const handleBookNow = () => {
-    // 使用现有的套餐特定预订页面路由
     router.push(`/packages/${packageData.id}/booking?travelers=${travelers}`);
   };
+
   const totalPrice = packageData.price * travelers;
 
   return (
@@ -112,32 +114,38 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                 >
                   包含内容
                 </button>
-                <button
-                  className={`nav-tab ${activeTab === 'itinerary' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('itinerary')}
-                >
-                  行程安排
-                </button>
+                {packageData.itinerary && packageData.itinerary.length > 0 && (
+                  <button
+                    className={`nav-tab ${activeTab === 'itinerary' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('itinerary')}
+                  >
+                    行程安排
+                  </button>
+                )}
               </div>
 
               {/* Tab Content */}
               <div className="tab-content">
                 {activeTab === 'overview' && (
                   <div className="overview-content">
-                    <h2>套餐描述</h2>
-                    <p className="description">{packageData.description}</p>
+                    <h2>套餐介绍</h2>
+                    <p>{packageData.description}</p>
                     
-                    <h3>行程亮点</h3>
-                    <ul className="highlights-list">
-                      {packageData.highlights.map((highlight, index) => (
-                        <li key={index} className="highlight-item">
-                          <svg className="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
+                    {packageData.highlights && packageData.highlights.length > 0 && (
+                      <>
+                        <h3>行程亮点</h3>
+                        <ul className="highlights-list">
+                          {packageData.highlights.map((highlight, index) => (
+                            <li key={index} className="highlight-item">
+                              <svg className="highlight-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 )}
 
@@ -147,7 +155,7 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                     <ul className="includes-list">
                       {packageData.includes.map((item, index) => (
                         <li key={index} className="include-item">
-                          <svg className="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="include-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                           {item}
@@ -157,47 +165,45 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                   </div>
                 )}
 
-                {activeTab === 'itinerary' && (
+                {activeTab === 'itinerary' && packageData.itinerary && (
                   <div className="itinerary-content">
                     <h2>详细行程</h2>
-                    {packageData.itinerary && packageData.itinerary.length > 0 ? (
-                      <div className="itinerary-list">
-                        {packageData.itinerary.map((day) => (
-                          <div key={day.day} className="itinerary-day">
-                            <div className="day-header">
-                              <span className="day-number">第{day.day}天</span>
-                              <h3 className="day-title">{day.title}</h3>
-                            </div>
-                            <ul className="day-activities">
-                              {day.activities.map((activity, index) => (
-                                <li key={index} className="activity">
-                                  {activity}
-                                </li>
-                              ))}
-                            </ul>
+                    <div className="itinerary-list">
+                      {packageData.itinerary.map((day, index) => (
+                        <div key={index} className="itinerary-day">
+                          <div className="day-header">
+                            <span className="day-number">第{day.day}天</span>
+                            <h3 className="day-title">{day.title}</h3>
                           </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="no-itinerary">详细行程安排将在预订确认后提供。</p>
-                    )}
+                          <ul className="day-activities">
+                            {day.activities.map((activity, actIndex) => (
+                              <li key={actIndex} className="activity-item">
+                                {activity}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Right Column - Booking */}
-            <div className="booking-sidebar">
+            {/* Right Column - Booking Card */}
+            <div className="content-sidebar">
               <div className="booking-card">
-                <div className="price-section">
-                  <span className="price-label">起价</span>
-                  <span className="price-value">¥{packageData.price}</span>
-                  <span className="price-unit">/ 人</span>
+                <div className="price-info">
+                  <div className="price-main">
+                    <span className="price-amount">${packageData.price}</span>
+                    <span className="price-unit">/ 人</span>
+                  </div>
+                  <p className="price-note">起价，根据出行时间和人数调整</p>
                 </div>
 
-                <div className="travelers-section">
+                <div className="travelers-selector">
                   <label htmlFor="travelers">出行人数</label>
-                  <div className="travelers-input">
+                  <div className="travelers-control">
                     <button
                       type="button"
                       onClick={() => setTravelers(Math.max(1, travelers - 1))}
@@ -205,14 +211,7 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                     >
                       -
                     </button>
-                    <input
-                      type="number"
-                      id="travelers"
-                      value={travelers}
-                      onChange={(e) => setTravelers(Math.max(1, parseInt(e.target.value) || 1))}
-                      min="1"
-                      className="travelers-count"
-                    />
+                    <span className="travelers-count">{travelers}</span>
                     <button
                       type="button"
                       onClick={() => setTravelers(travelers + 1)}
@@ -223,11 +222,9 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                   </div>
                 </div>
 
-                <div className="total-section">
-                  <div className="total-row">
-                    <span>总价格</span>
-                    <span className="total-price">¥{totalPrice.toLocaleString()}</span>
-                  </div>
+                <div className="total-price">
+                  <div className="total-label">总价</div>
+                  <div className="total-amount">${totalPrice}</div>
                 </div>
 
                 <button
@@ -237,374 +234,31 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                   立即预订
                 </button>
 
-                <div className="booking-note">
-                  <p>• 价格包含所有基础服务</p>
-                  <p>• 支持24小时客服</p>
-                  <p>• 免费取消政策</p>
+                <div className="booking-features">
+                  <div className="feature-item">
+                    <svg className="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>免费取消</span>
+                  </div>
+                  <div className="feature-item">
+                    <svg className="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>即时确认</span>
+                  </div>
+                  <div className="feature-item">
+                    <svg className="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>24/7客服支持</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .package-details {
-          min-height: 100vh;
-          background: #f9fafb;
-        }
-
-        .package-hero {
-          position: relative;
-          height: 60vh;
-          min-height: 400px;
-          overflow: hidden;
-        }
-
-        .hero-image {
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
-
-        .hero-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
-          z-index: 1;
-        }
-
-        .hero-content {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 2;
-          padding: 2rem 0;
-          color: white;
-        }
-
-        .hero-title {
-          font-size: 3rem;
-          font-weight: bold;
-          margin-bottom: 0.5rem;
-        }
-
-        .hero-subtitle {
-          font-size: 1.25rem;
-          margin-bottom: 1rem;
-          opacity: 0.9;
-        }
-
-        .hero-meta {
-          display: flex;
-          gap: 2rem;
-          align-items: center;
-        }
-
-        .rating {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .stars {
-          display: flex;
-          gap: 0.125rem;
-        }
-
-        .star {
-          width: 1.25rem;
-          height: 1.25rem;
-          color: #fbbf24;
-        }
-
-        .star.filled {
-          color: #f59e0b;
-        }
-
-        .duration {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .duration-icon {
-          width: 1.25rem;
-          height: 1.25rem;
-        }
-
-        .package-content {
-          padding: 2rem 0;
-        }
-
-        .content-grid {
-          display: grid;
-          grid-template-columns: 1fr 350px;
-          gap: 2rem;
-        }
-
-        .content-nav {
-          display: flex;
-          border-bottom: 2px solid #e5e7eb;
-          margin-bottom: 2rem;
-        }
-
-        .nav-tab {
-          padding: 1rem 1.5rem;
-          border: none;
-          background: none;
-          cursor: pointer;
-          border-bottom: 3px solid transparent;
-          transition: all 0.3s;
-        }
-
-        .nav-tab.active {
-          color: #3b82f6;
-          border-bottom-color: #3b82f6;
-        }
-
-        .tab-content {
-          background: white;
-          padding: 2rem;
-          border-radius: 0.5rem;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .description {
-          font-size: 1.125rem;
-          line-height: 1.7;
-          color: #6b7280;
-          margin-bottom: 2rem;
-        }
-
-        .highlights-list,
-        .includes-list {
-          list-style: none;
-          padding: 0;
-        }
-
-        .highlight-item,
-        .include-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.75rem;
-          padding: 0.75rem 0;
-          border-bottom: 1px solid #f3f4f6;
-        }
-
-        .check-icon {
-          width: 1.25rem;
-          height: 1.25rem;
-          color: #10b981;
-          margin-top: 0.125rem;
-          flex-shrink: 0;
-        }
-
-        .itinerary-day {
-          margin-bottom: 2rem;
-          padding: 1.5rem;
-          border: 1px solid #e5e7eb;
-          border-radius: 0.5rem;
-        }
-
-        .day-header {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .day-number {
-          background: #3b82f6;
-          color: white;
-          padding: 0.5rem 1rem;
-          border-radius: 9999px;
-          font-weight: bold;
-          font-size: 0.875rem;
-        }
-
-        .day-title {
-          font-size: 1.25rem;
-          font-weight: 600;
-          margin: 0;
-        }
-
-        .day-activities {
-          list-style: none;
-          padding: 0;
-        }
-
-        .activity {
-          padding: 0.5rem 0;
-          padding-left: 1rem;
-          border-left: 2px solid #e5e7eb;
-          margin-left: 1rem;
-          position: relative;
-        }
-
-        .activity::before {
-          content: '';
-          position: absolute;
-          left: -5px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 8px;
-          height: 8px;
-          background: #3b82f6;
-          border-radius: 50%;
-        }
-
-        .booking-sidebar {
-          position: sticky;
-          top: 2rem;
-          height: fit-content;
-        }
-
-        .booking-card {
-          background: white;
-          padding: 2rem;
-          border-radius: 0.5rem;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-          border: 1px solid #e5e7eb;
-        }
-
-        .price-section {
-          text-align: center;
-          margin-bottom: 2rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 1px solid #e5e7eb;
-        }
-
-        .price-label {
-          display: block;
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin-bottom: 0.5rem;
-        }
-
-        .price-value {
-          font-size: 2.5rem;
-          font-weight: bold;
-          color: #3b82f6;
-        }
-
-        .price-unit {
-          font-size: 1rem;
-          color: #6b7280;
-        }
-
-        .travelers-section {
-          margin-bottom: 1.5rem;
-        }
-
-        .travelers-section label {
-          display: block;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-        }
-
-        .travelers-input {
-          display: flex;
-          align-items: center;
-          border: 1px solid #d1d5db;
-          border-radius: 0.375rem;
-          overflow: hidden;
-        }
-
-        .travelers-btn {
-          width: 3rem;
-          height: 3rem;
-          border: none;
-          background: #f9fafb;
-          cursor: pointer;
-          font-size: 1.25rem;
-          font-weight: bold;
-          transition: background-color 0.2s;
-        }
-
-        .travelers-btn:hover {
-          background: #e5e7eb;
-        }
-
-        .travelers-count {
-          flex: 1;
-          height: 3rem;
-          border: none;
-          text-align: center;
-          font-size: 1.125rem;
-          font-weight: 600;
-        }
-
-        .total-section {
-          margin-bottom: 2rem;
-          padding-top: 1rem;
-          border-top: 1px solid #e5e7eb;
-        }
-
-        .total-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .total-price {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #3b82f6;
-        }
-
-        .book-now-btn {
-          width: 100%;
-          padding: 1rem;
-          background: #3b82f6;
-          color: white;
-          border: none;
-          border-radius: 0.375rem;
-          font-size: 1.125rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-color 0.2s;
-          margin-bottom: 1rem;
-        }
-
-        .book-now-btn:hover {
-          background: #2563eb;
-        }
-
-        .booking-note {
-          font-size: 0.875rem;
-          color: #6b7280;
-        }
-
-        .booking-note p {
-          margin: 0.25rem 0;
-        }
-
-        .no-itinerary {
-          text-align: center;
-          color: #6b7280;
-          font-style: italic;
-          padding: 2rem;
-        }
-
-        @media (max-width: 768px) {
-          .content-grid {
-            grid-template-columns: 1fr;
-          }
-          
-          .hero-title {
-            font-size: 2rem;
-          }
-          
-          .booking-sidebar {
-            position: static;
-          }
-        }
-      `}</style>
     </div>
   );
 };
