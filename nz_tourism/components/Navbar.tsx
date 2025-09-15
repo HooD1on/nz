@@ -6,6 +6,9 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import '../app/style/Navbar.css'
+
+
 
 interface NavbarProps {
   transparent?: boolean

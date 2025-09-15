@@ -1,6 +1,7 @@
 // nz_tourism/app/layout.tsx
 import { Metadata } from 'next'
 import './globals.css'
+import './style/Navbar.css'
 import '../styles/layout.css'
 import '../styles/components.css'
 import '../styles/sections.css'

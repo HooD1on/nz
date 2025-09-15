@@ -1,97 +1,100 @@
-/* 全局容器样式 */
+/* 修复主页布局偏移问题 */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Hero 部分样式 */
+/* Hero 部分布局修复 */
 .hero-section {
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow-x: hidden; /* 防止水平滚动 */
 }
 
 .hero {
   position: relative;
   flex: 1;
-  min-height: calc(100vh - 5rem); /* 减去partners高度 */
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1551524559-8af4e6624178?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80');
+  min-height: calc(100vh - 5rem);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+              url('https://images.unsplash.com/photo-1551524559-8af4e6624178?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed; /* 增加视觉效果 */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
-  overflow: hidden;
-  padding-top: 80px; /* 为导航栏增加空间 */
+  width: 100%;
+  padding: 120px 20px 80px; /* 调整padding确保居中 */
+  box-sizing: border-box;
 }
 
 .hero-content {
   max-width: 900px;
+  width: 100%;
   backdrop-filter: blur(0px);
   background-color: transparent;
   border-radius: 20px;
   padding: 2rem;
   z-index: 2;
-  margin-top: 40px; /* 为内容添加顶部间距 */
+  margin: 0 auto; /* 确保内容居中 */
+  box-sizing: border-box;
 }
 
-/* Hero 部分标题样式改进 */
-.hero-subtitle {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: #FFE566; /* 明亮的金黄色 */
-  text-shadow: 0 0 15px rgba(255, 229, 102, 0.6), 0 0 30px rgba(255, 229, 102, 0.3);
-  position: relative;
-  display: inline-block;
-  margin-top: 1rem; /* 增加顶部间距 */
+/* 确保所有section都居中对齐 */
+.section {
+  padding: 60px 0;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.hero-subtitle::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+.section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.hero-title {
-  font-size: 5.5rem;
-  font-weight: 900;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.03em;
-  background: linear-gradient(to right, #ffffff, #F8F8FF, #E6E6FA);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 
-    0 2px 10px rgba(255, 255, 255, 0.5),
-    0 4px 20px rgba(255, 255, 255, 0.3);
-  position: relative;
-  display: inline-block;
-  margin-top: 0.5rem;
-  line-height: 1.1;
+/* 修复响应式布局 */
+@media (max-width: 768px) {
+  .hero {
+      padding: 100px 15px 60px;
+  }
+  
+  .hero-content {
+      padding: 1.5rem;
+  }
+  
+  .container {
+      padding: 0 15px;
+  }
+  
+  .navbar {
+      padding: 15px 20px;
+  }
 }
 
-.hero-description {
-  font-size: 1.3rem;
-  margin-bottom: 3rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 300;
-  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.4);
+@media (max-width: 480px) {
+  .hero {
+      padding: 90px 10px 50px;
+  }
+  
+  .hero-content {
+      padding: 1rem;
+  }
+  
+  .container {
+      padding: 0 10px;
+  }
 }
 
 /* 体验数字徽章样式改进 */

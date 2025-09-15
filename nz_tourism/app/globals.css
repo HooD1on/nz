@@ -105,101 +105,133 @@ h2 {
     text-decoration: underline;
 }
 
-/* 导航栏 */
+/* 导航栏基础样式 - 优化版本 */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    z-index: 100;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 50px;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 导航栏链接样式优化 */
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 }
 
 .navbar .nav-links a {
-    color: #333;
+    color: #374151;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.navbar .nav-links a:hover {
+    color: #3b82f6;
+    transform: translateY(-1px);
+}
+
+.navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    transition: width 0.3s ease;
+}
+
+.navbar .nav-links a:hover::after {
+    width: 100%;
 }
 
 .navbar .sign-in-btn {
-    background: #3498db;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
     color: white;
     border: none;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
-/* 首页专用导航样式，优先级高 */
+.navbar .sign-in-btn:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* 首页专用透明导航栏样式 - 强化优先级 */
 html[data-homepage="true"] .navbar {
     position: absolute !important;
-    background-color: transparent !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
     box-shadow: none !important;
-    padding: 25px 50px !important;
+    padding: 20px 50px !important;
 }
 
 html[data-homepage="true"] .navbar .nav-links a {
-    color: white !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     font-size: 15px !important;
-    letter-spacing: 0.5px !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    letter-spacing: 0.6px !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+html[data-homepage="true"] .navbar .nav-links a:hover {
+    color: white !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
+}
+
+html[data-homepage="true"] .navbar .nav-links a::after {
+    background: linear-gradient(90deg, white, rgba(255, 255, 255, 0.8)) !important;
 }
 
 html[data-homepage="true"] .navbar .sign-in-btn {
-    background: transparent !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     color: white !important;
-    border: 1px solid white !important;
-    padding: 8px 22px !important;
-    transition: all 0.3s ease !important;
+    backdrop-filter: blur(10px) !important;
 }
 
 html[data-homepage="true"] .navbar .sign-in-btn:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    transform: translateY(-2px) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+/* Logo 样式美化 */
+.navbar .logo {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
 }
 
-.logo img {
-    height: 40px;
+html[data-homepage="true"] .navbar .logo {
+    -webkit-text-fill-color: white !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '▼';
-    font-size: 8px;
-    margin-left: 4px;
-    vertical-align: middle;
-}
-
-.sign-in-btn {
-    background: transparent;
-    color: white;
-    border: 1px solid white;
-    padding: 8px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
 /* 英雄部分 */
 .hero {
     position: relative;
