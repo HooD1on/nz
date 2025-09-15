@@ -1,5 +1,3 @@
-// 修复 nz_tourism/app/packages/[id]/booking/page.tsx 文件
-
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
@@ -11,8 +9,9 @@ import { getStripe } from '../../../../lib/stripe';
 import PaymentForm from '../../../../components/payment/PaymentForm';
 import { BookingFormData } from '../../../../types/booking';
 import { Package } from '../../../../types/package';
+import '../../../../app/style/booking.css';
 
-// 模拟套餐数据 - 与packages/[id]/page.tsx保持一致
+// 模拟套餐数据
 const packages: { [key: string]: Package } = {
   '1': {
     id: '1',
@@ -73,29 +72,12 @@ const packages: { [key: string]: Package } = {
       '往返交通',
       '文化纪念品'
     ]
-  },
-  'south-island-nature': {
-    id: 'south-island-nature',
-    title: '南岛自然探索之旅',
-    description: '8天7晚深度游览新西兰南岛，体验最纯净的自然风光。',
-    imageUrl: '/images/packages/south-island-nature.jpg',
-    price: 2999,
-    duration: '8天7晚',
-    rating: 4.8,
-    reviewCount: 124,
-    includes: [
-      '皇后镇观光',
-      '米尔福德峡湾游船',
-      '冰川徒步体验',
-      '四星级酒店住宿',
-      '专业中文导游'
-    ]
   }
 };
 
 function BookingContent() {
   const router = useRouter();
-  const params = useParams(); // 🔥 新增：获取路径参数
+  const params = useParams();
   const searchParams = useSearchParams();
   const { data: session, status } = useSession();
 
@@ -112,10 +94,10 @@ function BookingContent() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(true);
 
-  // 🔥 修复：从路径参数获取套餐ID
+  // 初始化套餐数据
   useEffect(() => {
-    const packageId = params?.id as string; // 从路径参数获取套餐ID
-    const travelers = searchParams?.get('travelers'); // 从查询参数获取人数
+    const packageId = params?.id as string;
+    const travelers = searchParams?.get('travelers');
 
     if (packageId && packages[packageId]) {
       setPackageData(packages[packageId]);
@@ -123,13 +105,12 @@ function BookingContent() {
         setBookingData(prev => ({ ...prev, travelers: parseInt(travelers) || 1 }));
       }
     } else {
-      // 如果没有套餐ID或套餐不存在，重定向到首页
       router.push('/');
       return;
     }
 
     setLoading(false);
-  }, [params, searchParams, router]); // 🔥 更新依赖项
+  }, [params, searchParams, router]);
 
   // 自动填充用户信息
   useEffect(() => {
@@ -192,7 +173,6 @@ function BookingContent() {
   // 继续到支付步骤
   const handleContinueToPayment = () => {
     if (status === 'unauthenticated') {
-      // 🔥 修复：更新重定向URL
       const currentUrl = `/packages/${packageData?.id}/booking?travelers=${bookingData.travelers}`;
       router.push(`/auth?redirect=${encodeURIComponent(currentUrl)}`);
       return;
@@ -201,6 +181,11 @@ function BookingContent() {
     if (validateForm()) {
       setCurrentStep(2);
     }
+  };
+
+  // 返回第一步
+  const handleBackToForm = () => {
+    setCurrentStep(1);
   };
 
   // 支付成功回调
@@ -226,10 +211,31 @@ function BookingContent() {
 
   if (!packageData) {
     return (
-      <div className="booking-error">
-        <h2>套餐未找到</h2>
+      <div style={{
+        textAlign: 'center',
+        padding: '60px 20px',
+        color: '#6b7280'
+      }}>
+        <h2 style={{
+          color: '#111827',
+          marginBottom: '12px',
+          fontSize: '1.5rem'
+        }}>套餐未找到</h2>
         <p>请返回重新选择套餐</p>
-        <button onClick={() => router.push('/')} className="back-button">
+        <button 
+          onClick={() => router.push('/')} 
+          style={{
+            background: '#3b82f6',
+            color: 'white',
+            border: 'none',
+            padding: '12px 24px',
+            borderRadius: '8px',
+            fontSize: '1rem',
+            cursor: 'pointer',
+            marginTop: '20px',
+            transition: 'background 0.2s'
+          }}
+        >
           返回首页
         </button>
       </div>
@@ -238,30 +244,221 @@ function BookingContent() {
 
   const totalPrice = packageData.price * bookingData.travelers;
 
-  // 继续渲染预订页面的其余部分...
   return (
     <div className="booking-page">
-      {/* 预订页面的其余内容保持不变 */}
       <div className="booking-container">
+        {/* 进度指示器 */}
+        <div className="booking-progress">
+          <div className={`progress-step ${currentStep >= 1 ? 'active' : ''}`}>
+            <div className="step-number">1</div>
+            <span>填写信息</span>
+          </div>
+          <div className="progress-line"></div>
+          <div className={`progress-step ${currentStep >= 2 ? 'active' : ''}`}>
+            <div className="step-number">2</div>
+            <span>支付确认</span>
+          </div>
+        </div>
+
+        {/* 套餐摘要 */}
         <div className="package-summary">
-          <h2>预订：{packageData.title}</h2>
-          <p>套餐价格：${packageData.price} / 人</p>
-          <p>出行人数：{bookingData.travelers}人</p>
-          <p>总价：${totalPrice}</p>
-          
-          <button onClick={handleContinueToPayment} className="continue-btn">
-            继续支付
-          </button>
+          <div className="package-info">
+            <div className="package-image">
+              <Image
+                src={packageData.imageUrl}
+                alt={packageData.title}
+                width={120}
+                height={80}
+                className="rounded"
+              />
+            </div>
+            <div className="package-details">
+              <h3>{packageData.title}</h3>
+              <p className="package-duration">{packageData.duration}</p>
+              <p className="package-price">${packageData.price} / 人</p>
+            </div>
+          </div>
+          <div className="price-summary">
+            <div className="price-row">
+              <span>套餐费用</span>
+              <span>${packageData.price} × {bookingData.travelers}人</span>
+            </div>
+            <div className="price-row total">
+              <span>总计</span>
+              <span>${totalPrice}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 步骤内容 */}
+        <div className="booking-content">
+          {currentStep === 1 && (
+            <div className="booking-form-step">
+              <h2>预订信息</h2>
+              <form className="booking-form">
+                <div className="form-group">
+                  <label htmlFor="customerName">联系人姓名 *</label>
+                  <input
+                    type="text"
+                    id="customerName"
+                    value={bookingData.customerName}
+                    onChange={(e) => handleInputChange('customerName', e.target.value)}
+                    className={errors.customerName ? 'error' : ''}
+                    placeholder="请输入您的姓名"
+                  />
+                  {errors.customerName && <span className="error-text">{errors.customerName}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">邮箱地址 *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={bookingData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className={errors.email ? 'error' : ''}
+                    placeholder="请输入您的邮箱"
+                  />
+                  {errors.email && <span className="error-text">{errors.email}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="phone">手机号码 *</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={bookingData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className={errors.phone ? 'error' : ''}
+                    placeholder="请输入您的手机号码"
+                  />
+                  {errors.phone && <span className="error-text">{errors.phone}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="travelers">出行人数 *</label>
+                  <div className="travelers-control">
+                    <button 
+                      type="button" 
+                      onClick={() => handleInputChange('travelers', Math.max(1, bookingData.travelers - 1))}
+                      className="travelers-btn"
+                      disabled={bookingData.travelers <= 1}
+                    >
+                      -
+                    </button>
+                    <span className="travelers-count">{bookingData.travelers}</span>
+                    <button 
+                      type="button" 
+                      onClick={() => handleInputChange('travelers', Math.min(20, bookingData.travelers + 1))}
+                      className="travelers-btn"
+                      disabled={bookingData.travelers >= 20}
+                    >
+                      +
+                    </button>
+                  </div>
+                  {errors.travelers && <span className="error-text">{errors.travelers}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="travelDate">出行日期 *</label>
+                  <input
+                    type="date"
+                    id="travelDate"
+                    value={bookingData.travelDate}
+                    onChange={(e) => handleInputChange('travelDate', e.target.value)}
+                    className={errors.travelDate ? 'error' : ''}
+                    min={new Date().toISOString().split('T')[0]}
+                  />
+                  {errors.travelDate && <span className="error-text">{errors.travelDate}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="specialRequests">特殊要求</label>
+                  <textarea
+                    id="specialRequests"
+                    value={bookingData.specialRequests}
+                    onChange={(e) => handleInputChange('specialRequests', e.target.value)}
+                    placeholder="如有特殊要求，请在此说明（选填）"
+                    rows={3}
+                  />
+                </div>
+
+                <div className="form-actions">
+                  <button 
+                    type="button" 
+                    onClick={handleContinueToPayment}
+                    className="continue-btn"
+                  >
+                    继续支付
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {currentStep === 2 && (
+            <div className="payment-step">
+              <div className="step-header">
+                <button 
+                  onClick={handleBackToForm}
+                  className="back-btn"
+                >
+                  ← 返回修改信息
+                </button>
+                <h2>支付确认</h2>
+              </div>
+
+              <div className="booking-summary">
+                <h3>预订详情确认</h3>
+                <div className="summary-grid">
+                  <div className="summary-item">
+                    <span>联系人：</span>
+                    <span>{bookingData.customerName}</span>
+                  </div>
+                  <div className="summary-item">
+                    <span>邮箱：</span>
+                    <span>{bookingData.email}</span>
+                  </div>
+                  <div className="summary-item">
+                    <span>电话：</span>
+                    <span>{bookingData.phone}</span>
+                  </div>
+                  <div className="summary-item">
+                    <span>出行人数：</span>
+                    <span>{bookingData.travelers}人</span>
+                  </div>
+                  <div className="summary-item">
+                    <span>出行日期：</span>
+                    <span>{bookingData.travelDate}</span>
+                  </div>
+                  {bookingData.specialRequests && (
+                    <div className="summary-item full-width">
+                      <span>特殊要求：</span>
+                      <span>{bookingData.specialRequests}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <Elements stripe={getStripe()}>
+                <PaymentForm
+                  packageData={packageData}
+                  bookingData={bookingData}
+                  onSuccess={handlePaymentSuccess}
+                  onError={handlePaymentError}
+                />
+              </Elements>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-// 主组件保持不变
 export default function BookingPage() {
   return (
-    <Suspense fallback={<div>加载中...</div>}>
+    <Suspense fallback={<div className="booking-loading"><div className="loading-spinner"></div><p>加载中...</p></div>}>
       <BookingContent />
     </Suspense>
   );

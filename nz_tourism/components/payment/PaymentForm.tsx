@@ -40,7 +40,7 @@ export default function PaymentForm({
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  // 🎯 新增：处理支付成功后的状态更新和订单创建
+  // 处理支付成功后的状态更新和订单创建
   const handlePaymentSuccess = async (paymentIntent: any): Promise<void> => {
     try {
       console.log('🎉 支付成功，开始更新状态和创建订单:', paymentIntent.id);
@@ -64,7 +64,7 @@ export default function PaymentForm({
 
       console.log('✅ 支付状态更新成功');
 
-      // 2. 创建订单 - 修复类型问题
+      // 2. 创建订单
       const bookingRequestData = {
         paymentIntentId: paymentIntent.id,
         packageId: packageData.id,
@@ -73,21 +73,16 @@ export default function PaymentForm({
           email: bookingData.email,
           phone: bookingData.phone,
           travelers: bookingData.travelers,
-          // 修复 travelDate 类型转换问题
-          travelDate: (() => {
-            if (typeof bookingData.travelDate === 'string') {
-              return bookingData.travelDate.includes('T') 
-                ? bookingData.travelDate 
-                : new Date(bookingData.travelDate).toISOString();
-            }
-            return new Date(bookingData.travelDate as any).toISOString();
-          })(),
+          travelDate: typeof bookingData.travelDate === 'string'
+            ? bookingData.travelDate.includes('T')
+              ? bookingData.travelDate
+              : new Date(bookingData.travelDate).toISOString()
+            : new Date(bookingData.travelDate).toISOString(),
           specialRequests: bookingData.specialRequests || '',
-        },
-        totalAmount: packageData.price * bookingData.travelers,
+        }
       };
 
-      const createBookingResponse = await fetch('/api/bookings/create', {
+      const bookingResponse = await fetch('/api/bookings/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -96,21 +91,18 @@ export default function PaymentForm({
       });
 
       let createdBooking = null;
-      if (createBookingResponse.ok) {
-        createdBooking = await createBookingResponse.json();
-        console.log('✅ 订单创建成功:', createdBooking);
+      if (bookingResponse.ok) {
+        createdBooking = await bookingResponse.json();
+        console.log('✅ 订单创建成功:', createdBooking.id);
       } else {
-        const errorData = await createBookingResponse.json();
-        console.warn('⚠️ 创建订单失败，但支付已成功:', errorData.error);
-        // 即使订单创建失败，支付已成功，用户应该知道
-        alert(`支付成功！\n支付ID: ${paymentIntent.id}\n\n订单创建时出现问题，请联系客服处理。`);
+        console.warn('⚠️ 订单创建失败，但支付已成功');
       }
 
       // 3. 调用成功回调
       onSuccess(paymentIntent);
 
       // 4. 跳转到成功页面
-      const successUrl = `/booking/success?payment_intent=${paymentIntent.id}`;
+      const successUrl = `/bookings/success?payment_intent=${paymentIntent.id}`;
       if (createdBooking?.id) {
         router.push(`${successUrl}&booking_id=${createdBooking.id}`);
       } else {
@@ -125,11 +117,11 @@ export default function PaymentForm({
       
       // 仍然调用成功回调和跳转
       onSuccess(paymentIntent);
-      router.push(`/booking/success?payment_intent=${paymentIntent.id}`);
+      router.push(`/bookings/success?payment_intent=${paymentIntent.id}`);
     }
   };
 
-  // 🎯 新增：处理支付失败
+  // 处理支付失败
   const handlePaymentFailure = async (paymentIntent: any, error: any): Promise<void> => {
     try {
       console.log('❌ 支付失败，更新状态:', paymentIntent?.id);
@@ -186,7 +178,6 @@ export default function PaymentForm({
             email: bookingData.email,
             phone: bookingData.phone,
             travelers: bookingData.travelers,
-            // 确保发送正确格式的日期
             travelDate: typeof bookingData.travelDate === 'string'
               ? bookingData.travelDate.includes('T')
                 ? bookingData.travelDate
@@ -248,18 +239,20 @@ export default function PaymentForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="payment-form">
-      <div className="form-section">
-        <h3>支付信息</h3>
-        
+    <div className="payment-form-container">
+      <h3>支付信息</h3>
+      
+      <form onSubmit={handleSubmit} className="payment-form">
         <div className="card-element-container">
           <label htmlFor="card-element">
-            信用卡或借记卡
+            信用卡或借记卡 *
           </label>
-          <CardElement
-            id="card-element"
-            options={CARD_ELEMENT_OPTIONS}
-          />
+          <div className="card-element-wrapper">
+            <CardElement
+              id="card-element"
+              options={CARD_ELEMENT_OPTIONS}
+            />
+          </div>
         </div>
 
         {errorMessage && (
@@ -269,146 +262,184 @@ export default function PaymentForm({
         )}
 
         <div className="payment-summary">
+          <h4>费用明细</h4>
           <div className="summary-row">
             <span>套餐费用</span>
             <span>${packageData.price} NZD</span>
           </div>
           <div className="summary-row">
-            <span>人数</span>
+            <span>出行人数</span>
             <span>{bookingData.travelers}人</span>
           </div>
           <div className="summary-row total">
-            <span>总计</span>
+            <span>应付总额</span>
             <span>${packageData.price * bookingData.travelers} NZD</span>
           </div>
         </div>
-      </div>
-      
-      <button
-        type="submit"
-        disabled={!stripe || isProcessing}
-        className="pay-button"
-      >
-        {isProcessing ? (
-          <span>🔄 处理中...</span>
-        ) : (
-          <span>💳 立即支付 ${packageData.price * bookingData.travelers} NZD</span>
-        )}
-      </button>
-      
-      {/* 开发环境测试提示 */}
-      {process.env.NODE_ENV === 'development' && (
+
+        <button
+          type="submit"
+          disabled={!stripe || isProcessing}
+          className="pay-button"
+        >
+          {isProcessing ? '处理中...' : `支付 $${packageData.price * bookingData.travelers} NZD`}
+        </button>
+
         <div className="test-info">
-          <strong>🧪 测试环境</strong><br/>
-          测试卡号: <code>4242 4242 4242 4242</code><br/>
-          CVV: 任意3位数字 | 过期日期: 任意未来日期
+          <h5>测试卡号信息：</h5>
+          <p>卡号: <code>4242 4242 4242 4242</code></p>
+          <p>到期日期: 任意未来日期 | CVC: 任意3位数字</p>
+          <p>邮编: 任意5位数字</p>
         </div>
-      )}
+      </form>
 
       <style jsx>{`
-        .payment-form {
-          background: white;
-          border-radius: 12px;
-          padding: 24px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        .payment-form-container {
+          max-width: 100%;
         }
         
-        .form-section h3 {
-          margin: 0 0 20px 0;
-          font-size: 20px;
+        .payment-form-container h3 {
+          font-size: 1.25rem;
           font-weight: 600;
-          color: #333;
-        }
-        
-        .card-element-container {
+          color: #111827;
           margin-bottom: 20px;
         }
         
+        .payment-form {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        
+        .card-element-container {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        
         .card-element-container label {
-          display: block;
-          margin-bottom: 8px;
-          font-weight: 600;
-          color: #333;
-          font-size: 14px;
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: #374151;
+        }
+        
+        .card-element-wrapper {
+          padding: 16px;
+          border: 1px solid #d1d5db;
+          border-radius: 8px;
+          background: white;
+          transition: all 0.2s;
+        }
+        
+        .card-element-wrapper:focus-within {
+          border-color: #3b82f6;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
         .error-message {
-          background: #ffeaa7;
-          border: 1px solid #d63031;
-          color: #d63031;
-          padding: 12px;
-          border-radius: 6px;
-          margin: 16px 0;
-          font-size: 14px;
-          font-weight: 500;
+          background: #fee2e2;
+          border: 1px solid #fecaca;
+          color: #dc2626;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-size: 0.875rem;
         }
         
         .payment-summary {
-          background: #f8f9fa;
+          background: #f9fafb;
+          border: 1px solid #e5e7eb;
           border-radius: 8px;
-          padding: 16px;
-          margin: 20px 0;
+          padding: 20px;
+        }
+        
+        .payment-summary h4 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #111827;
+          margin-bottom: 16px;
         }
         
         .summary-row {
           display: flex;
           justify-content: space-between;
+          align-items: center;
           margin-bottom: 8px;
-          font-size: 14px;
+          font-size: 0.875rem;
+          color: #6b7280;
         }
         
         .summary-row.total {
-          border-top: 1px solid #ddd;
-          padding-top: 8px;
+          border-top: 1px solid #e5e7eb;
+          padding-top: 12px;
           margin-top: 12px;
+          font-size: 1rem;
           font-weight: 600;
-          font-size: 16px;
-          color: #333;
+          color: #111827;
         }
         
         .pay-button {
-          width: 100%;
-          padding: 16px 24px;
-          background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           color: white;
           border: none;
+          padding: 16px 24px;
           border-radius: 8px;
-          font-size: 16px;
+          font-size: 1.125rem;
           font-weight: 600;
           cursor: pointer;
-          transition: all 0.3s ease;
-          margin: 16px 0;
+          transition: all 0.3s;
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .pay-button:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+          box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
         
         .pay-button:disabled {
-          background: #ccc;
+          background: #9ca3af;
           cursor: not-allowed;
           transform: none;
           box-shadow: none;
         }
         
         .test-info {
-          margin-top: 15px;
-          padding: 12px;
-          background: #e3f2fd;
-          border: 1px solid #1976d2;
-          border-radius: 6px;
-          font-size: 14px;
-          color: #1976d2;
+          background: #eff6ff;
+          border: 1px solid #bfdbfe;
+          border-radius: 8px;
+          padding: 16px;
+          font-size: 0.875rem;
+        }
+        
+        .test-info h5 {
+          color: #1e40af;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        
+        .test-info p {
+          color: #1d4ed8;
+          margin: 4px 0;
         }
         
         .test-info code {
-          background: #bbdefb;
-          padding: 2px 4px;
-          border-radius: 3px;
+          background: #dbeafe;
+          padding: 2px 6px;
+          border-radius: 4px;
           font-family: 'Monaco', 'Consolas', monospace;
+          font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+          .payment-summary {
+            padding: 16px;
+          }
+          
+          .pay-button {
+            padding: 14px 20px;
+            font-size: 1rem;
+          }
         }
       `}</style>
-    </form>
+    </div>
   );
 }
