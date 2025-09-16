@@ -418,7 +418,7 @@ export default function MyBookingsPage() {
                 <div className="card-actions">
                   <button
                     onClick={() => handleViewDetails(booking)}
-                    className="action-btn view-btn"
+                    className="btn btn--outline"
                   >
                     查看详情
                   </button>
@@ -427,13 +427,13 @@ export default function MyBookingsPage() {
                     <>
                       <button
                         onClick={() => handleDownloadVoucher(booking)}
-                        className="action-btn download-btn"
+                        className="btn btn--success"
                       >
                         下载凭证
                       </button>
                       <button
                         onClick={() => handleCancelBooking(booking.id)}
-                        className="action-btn cancel-btn"
+                        className="btn btn--danger"
                       >
                         取消预订
                       </button>

@@ -1,0 +1,22 @@
+/* 临时文件：用于测试新的CSS架构 */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/typography.css';
+@import './layout/container.css';
+@import './components/navbar.css';  /* 🆕 添加导航栏组件 */
+@import './components/button.css';
+@import './components/card.css';
+
+/* 全局样式 */
+body {
+  padding-top: 70px; /* 为固定导航栏留出空间 */
+}
+
+.section {
+  padding: var(--spacing-3xl) 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}

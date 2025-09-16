@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import '../../../styles/components/button.css';
 
 interface BookingDetails {
   id: string;
@@ -349,7 +350,7 @@ function BookingSuccessContent() {
         <div className="action-buttons">
           <button
             onClick={handleDownloadConfirmation}
-            className="action-btn download-btn"
+            className="btn btn--success"
           >
             <svg className="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
@@ -361,7 +362,7 @@ function BookingSuccessContent() {
           <button
             onClick={handleSendConfirmationEmail}
             disabled={emailSent}
-            className="action-btn email-btn"
+            className="btn btn--info"
           >
             <svg className="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
@@ -372,7 +373,7 @@ function BookingSuccessContent() {
 
           <button
             onClick={handleShare}
-            className="action-btn share-btn"
+            className="btn btn--ghost"
           >
             <svg className="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
@@ -412,10 +413,10 @@ function BookingSuccessContent() {
 
         {/* 底部导航 */}
         <div className="bottom-navigation">
-          <Link href="/my-bookings" className="nav-btn secondary">
+          <Link href="/my-bookings" className="btn btn--secondary btn--nav">
             查看我的预订
           </Link>
-          <Link href="/" className="nav-btn primary">
+          <Link href="/" className="btn btn--primary btn--nav">
             继续浏览
           </Link>
         </div>

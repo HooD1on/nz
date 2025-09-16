@@ -267,7 +267,7 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
         
         <button 
           type="submit" 
-          className="auth-button"
+          className="btn btn--primary btn--lg btn--full"
           disabled={isSubmitting}
         >
           {isSubmitting ? '创建账户中...' : '创建账户'}
@@ -277,10 +277,10 @@ export default function SignupForm({ submitError, setSubmitError, setActiveTab, 
       <div className="social-auth">
         <p>或使用以下方式注册</p>
         <div className="social-buttons">
-          <button className="social-btn facebook">
+          <button className="btn btn--social btn--facebook">
             <span>Facebook</span>
           </button>
-          <button className="social-btn google">
+          <button className="btn btn--social btn--google">
             <span>Google</span>
           </button>
         </div>

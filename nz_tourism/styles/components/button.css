@@ -1,0 +1,179 @@
+/* ===== 按钮基础样式 ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+  }
+  
+  /* ===== 按钮大小 ===== */
+  .btn--sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .btn--lg {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-lg);
+  }
+  
+  .btn--xl {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: var(--font-size-xl);
+  }
+  
+  .btn--full {
+    width: 100%;
+  }
+  
+  /* ===== 按钮样式变体 ===== */
+  .btn--primary {
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+    border-color: var(--color-primary);
+  }
+  
+  .btn--primary:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+  }
+  
+  .btn--secondary {
+    background-color: var(--color-gray-600);
+    color: var(--text-inverse);
+    border-color: var(--color-gray-600);
+  }
+  
+  .btn--secondary:hover {
+    background-color: var(--color-gray-700);
+    border-color: var(--color-gray-700);
+  }
+  
+  .btn--outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  
+  .btn--outline:hover {
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+  }
+  
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: transparent;
+  }
+  
+  .btn--ghost:hover {
+    background-color: var(--color-gray-100);
+  }
+  
+  /* ===== 功能性按钮 ===== */
+  .btn--cta {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--text-inverse);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn--cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .btn--success {
+    background-color: var(--color-success);
+    color: var(--text-inverse);
+    border-color: var(--color-success);
+  }
+  
+  .btn--danger {
+    background-color: var(--color-danger);
+    color: var(--text-inverse);
+    border-color: var(--color-danger);
+  }
+  
+  .btn--info {
+    background-color: var(--color-info);
+    color: var(--text-inverse);
+    border-color: var(--color-info);
+  }
+  
+  /* ===== 特殊用途按钮 ===== */
+  .btn--control {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 0;
+    font-weight: var(--font-weight-semibold);
+    border-color: var(--color-gray-300);
+  }
+  
+  .btn--icon {
+    gap: var(--spacing-sm);
+  }
+  
+  .btn--social {
+    gap: var(--spacing-sm);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  .btn--facebook {
+    background-color: #1877f2;
+    color: var(--text-inverse);
+    border-color: #1877f2;
+  }
+  
+  .btn--google {
+    background-color: #db4437;
+    color: var(--text-inverse);
+    border-color: #db4437;
+  }
+  
+  .btn--nav {
+    min-width: 150px;
+    text-align: center;
+  }
+  
+  /* ===== 按钮状态 ===== */
+  .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+  
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  
+  .btn--loading {
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  
+  /* ===== 响应式设计 ===== */
+  @media (max-width: 640px) {
+    .btn--lg {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-size: var(--font-size-md);
+    }
+    
+    .btn--nav {
+      min-width: 120px;
+    }
+  }

@@ -1,12 +1,12 @@
 // nz_tourism/app/layout.tsx
 import { Metadata } from 'next'
 import './globals.css'
-import './style/Navbar.css'
 import '../styles/layout.css'
 import '../styles/components.css'
 import '../styles/sections.css'
 import '../styles/destination.css'
 import '../styles/home.css'
+import '../styles/temp.css'              // 🆕 添加新的测试文件
 import ClientProviders from '../components/ClientProviders'
 
 export const metadata: Metadata = {

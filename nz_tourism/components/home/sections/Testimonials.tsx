@@ -57,7 +57,7 @@ const Testimonials = () => {
         </div>
         
         <div className="testimonials-see-more">
-          <Link href="/testimonials" className="btn">
+          <Link href="/testimonials" className="btn btn--primary">
             查看更多评价
           </Link>
         </div>
@@ -66,4 +66,4 @@ const Testimonials = () => {
   );
 };
 
-export default Testimonials; 
+export default Testimonials;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-interface TestimonialAuthor {
+interface Author {
   name: string;
   title: string;
   location: string;
@@ -11,7 +11,7 @@ interface TestimonialAuthor {
 interface TestimonialCardProps {
   content: string;
   rating: number;
-  author: TestimonialAuthor;
+  author: Author;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -20,38 +20,39 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   author
 }) => {
   return (
-    <div className="testimonial-card">
-      <div className="testimonial-header">
-        <div className="testimonial-rating">
+    <div className="card card--testimonial">
+      <div className="card__body">
+        <div className="card__rating">
           {[...Array(5)].map((_, i) => (
-            <span key={i} className="rating-star">
-              {i < rating ? '★' : '☆'}
+            <span
+              key={i}
+              className={`star ${i < rating ? 'filled' : ''}`}
+            >
+              ★
             </span>
           ))}
         </div>
-      </div>
-      
-      <blockquote className="testimonial-content">
-        <p>{content}</p>
-      </blockquote>
-      
-      <div className="testimonial-author">
-        <div className="author-avatar">
-          <Image
-            src={author.avatar}
-            alt={author.name}
-            width={48}
-            height={48}
-          />
-        </div>
-        <div className="author-info">
-          <div className="author-name">{author.name}</div>
-          <div className="author-title">{author.title}</div>
-          <div className="author-location">{author.location}</div>
+        
+        <p className="card__content">"{content}"</p>
+        
+        <div className="card__author">
+          <div className="author-avatar">
+            <Image
+              src={author.avatar}
+              alt={author.name}
+              width={48}
+              height={48}
+              className="rounded-full"
+            />
+          </div>
+          <div className="author-info">
+            <div className="author-name">{author.name}</div>
+            <div className="author-details">{author.title} · {author.location}</div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default TestimonialCard; 
+export default TestimonialCard;

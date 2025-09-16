@@ -387,7 +387,7 @@ function BookingContent() {
                   <button 
                     type="button" 
                     onClick={handleContinueToPayment}
-                    className="continue-btn"
+                    className="btn btn--primary btn--lg"
                   >
                     继续支付
                   </button>
@@ -401,7 +401,7 @@ function BookingContent() {
               <div className="step-header">
                 <button 
                   onClick={handleBackToForm}
-                  className="back-btn"
+                  className="btn btn--ghost"
                 >
                   ← 返回修改信息
                 </button>

@@ -1,0 +1,397 @@
+/* ===== 卡片基础样式 ===== */
+.card {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition-normal);
+    border: 1px solid transparent;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* ===== 卡片布局 ===== */
+  .card__header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+  
+  .card__body {
+    padding: var(--spacing-lg);
+  }
+  
+  .card__footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--color-gray-200);
+    background-color: var(--bg-secondary);
+  }
+  
+  .card__image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+  
+  .card:hover .card__image img {
+    transform: scale(1.05);
+  }
+  
+  /* ===== 卡片内容样式 ===== */
+  .card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+  }
+  
+  .card__subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .card__description {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+  }
+  
+  .card__badge {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  /* ===== 卡片变体 ===== */
+  
+  /* 交互式卡片 */
+  .card--interactive {
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+  
+  .card--interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary);
+  }
+  
+  /* 带边框卡片 */
+  .card--bordered {
+    border: 1px solid var(--color-gray-200);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* 紧凑卡片 */
+  .card--compact .card__body {
+    padding: var(--spacing-md);
+  }
+  
+  /* 特色卡片 */
+  .card--featured {
+    border: 2px solid var(--color-primary);
+    position: relative;
+  }
+  
+  .card--featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  }
+  
+  /* 水平卡片 */
+  .card--horizontal {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .card--horizontal .card__image {
+    flex: 0 0 200px;
+  }
+  
+  .card--horizontal .card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ===== 特定用途卡片 ===== */
+  
+  /* 目的地卡片 */
+  .card--destination {
+    position: relative;
+    height: 300px;
+    color: var(--text-inverse);
+  }
+  
+  .card--destination .card__image {
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+  
+  .card--destination::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom, 
+      rgba(0,0,0,0) 60%, 
+      rgba(0,0,0,0.8) 100%
+    );
+  }
+  
+  .card--destination .card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-lg);
+    z-index: 1;
+  }
+  
+  .card--destination .card__title {
+    color: var(--text-inverse);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+  }
+  
+  .card--destination .card__meta {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* 套餐卡片 */
+  .card--package {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card--package .card__image {
+    height: 200px;
+  }
+  
+  .card--package .card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card--package .card__footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    border-top: none;
+  }
+  
+  .card--package .card__price {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+  
+  .card--package .card__includes {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-md) 0;
+  }
+  
+  .card--package .card__includes li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+  }
+  
+  .card--package .card__includes li::before {
+    content: '✓';
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+  }
+  
+  /* 特色服务卡片 */
+  .card--feature {
+    text-align: center;
+    padding: var(--spacing-xl);
+    border: none;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .card--feature:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .card--feature .card__icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+  }
+  
+  .card--feature .card__title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  /* FAQ卡片 */
+  .card--faq {
+    border: none;
+    border-bottom: 1px solid var(--color-gray-200);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .card--faq:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--color-gray-50);
+  }
+  
+  .card--faq .card__header {
+    padding: var(--spacing-md) 0;
+    border-bottom: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card--faq .card__body {
+    padding: 0 0 var(--spacing-md) 0;
+  }
+  
+  .card--faq .card__toggle {
+    transition: transform var(--transition-normal);
+  }
+  
+  .card--faq.is-open .card__toggle {
+    transform: rotate(180deg);
+  }
+  
+  /* ===== 响应式设计 ===== */
+  @media (max-width: 768px) {
+    .card--horizontal {
+      flex-direction: column;
+    }
+    
+    .card--horizontal .card__image {
+      flex: none;
+      height: 200px;
+    }
+    
+    .card--destination {
+      height: 250px;
+    }
+    
+    .card--feature {
+      padding: var(--spacing-lg);
+    }
+    
+    .card__title {
+      font-size: var(--font-size-lg);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card__body,
+    .card__header,
+    .card__footer {
+      padding: var(--spacing-md);
+    }
+    
+    .card--destination {
+      height: 200px;
+    }
+    
+    .card--package .card__image {
+      height: 150px;
+    }
+  }
+  
+  /* ===== 加载状态 ===== */
+  .card--loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .card--loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: loading 1.5s infinite;
+    z-index: 1;
+  }
+  
+  @keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  /* ===== 辅助功能 ===== */
+  .card--interactive:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  /* 减少动画效果（用户偏好） */
+  @media (prefers-reduced-motion: reduce) {
+    .card,
+    .card__image img,
+    .card--feature,
+    .card--interactive {
+      transition: none;
+    }
+    
+    .card:hover,
+    .card--interactive:hover,
+    .card--feature:hover {
+      transform: none;
+    }
+  }

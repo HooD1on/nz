@@ -207,7 +207,7 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                     <button
                       type="button"
                       onClick={() => setTravelers(Math.max(1, travelers - 1))}
-                      className="travelers-btn"
+                      className="btn btn--control"
                     >
                       -
                     </button>
@@ -215,7 +215,7 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
                     <button
                       type="button"
                       onClick={() => setTravelers(travelers + 1)}
-                      className="travelers-btn"
+                      className="btn btn--control"
                     >
                       +
                     </button>
@@ -229,7 +229,7 @@ export const PackageDetailsPage = ({ packageData }: PackageDetailsPageProps) => 
 
                 <button
                   onClick={handleBookNow}
-                  className="book-now-btn"
+                  className="btn btn--cta btn--lg"
                 >
                   立即预订
                 </button>
