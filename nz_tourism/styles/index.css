@@ -1,12 +1,18 @@
-/* 临时文件：用于测试新的CSS架构 */
 @import './base/variables.css';
 @import './base/reset.css';
 @import './base/typography.css';
+
+/* 布局样式 */
 @import './layout/container.css';
-@import './components/navbar.css';  /* 🆕 添加导航栏组件 */
+@import './layout/spacing.css';
+
+/* 组件样式 */
+@import './components/navbar.css';
 @import './components/button.css';
 @import './components/card.css';
 
+/* 页面样式 */
+@import './pages/home.css';
 /* 全局样式 */
 body {
   padding-top: 70px; /* 为固定导航栏留出空间 */

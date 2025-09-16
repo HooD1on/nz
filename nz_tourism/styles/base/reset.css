@@ -58,3 +58,27 @@ img {
   height: auto;
   display: block;
 }
+
+
+/* styles/base/reset.css */
+/* 在原有内容基础上添加 */
+
+/* 确保盒子模型 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 移除默认样式 */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 工具类 */
+.text-right {
+  text-align: right;
+}

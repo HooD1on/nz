@@ -1,0 +1,58 @@
+/* styles/pages/home.css */
+
+/* 英雄部分背景 */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* 首页专用导航栏样式 */
+  html[data-homepage="true"] .navbar {
+    position: absolute !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: none !important;
+    padding: var(--spacing-lg) 50px !important;
+  }
+  
+  html[data-homepage="true"] .navbar .nav-links a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: var(--font-size-md) !important;
+    letter-spacing: 0.6px !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  html[data-homepage="true"] .navbar .nav-links a:hover {
+    color: var(--text-inverse) !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  html[data-homepage="true"] .navbar .nav-links a::after {
+    background: linear-gradient(90deg, white, rgba(255, 255, 255, 0.8)) !important;
+  }
+  
+  html[data-homepage="true"] .navbar .logo {
+    -webkit-text-fill-color: var(--text-inverse) !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  /* 背景色系统 */
+  .destinations {
+    background-color: var(--bg-primary);
+  }
+  
+  .features {
+    background-color: var(--bg-secondary);
+  }
+  
+  .packages {
+    background-color: var(--bg-primary);
+  }
+  
+  /* 合作伙伴背景 */
+  .partners {
+    background: rgba(255, 255, 255, 0.1);
+  }

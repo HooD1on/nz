@@ -1,0 +1,151 @@
+/* styles/layout/spacing.css */
+
+/* 全局间距系统 */
+.section {
+    padding: var(--spacing-3xl) 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  /* 英雄部分布局 */
+  .hero {
+    position: relative;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 var(--spacing-lg);
+    margin-top: -80px;
+  }
+  
+  /* 合作伙伴间距 */
+  .partners {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl) 0;
+    margin-top: auto;
+  }
+  
+  .partner-logo {
+    margin: 0 var(--spacing-xl);
+    opacity: 0.7;
+    height: 30px;
+  }
+  
+  /* 目的地网格布局 */
+  .destinations {
+    padding: var(--spacing-3xl) 0;
+  }
+  
+  .destination-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+  
+  /* 功能部分间距 */
+  .features {
+    padding: var(--spacing-3xl) 0;
+  }
+  
+  .features-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+  }
+  
+  .feature-item {
+    flex: 1;
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-lg);
+  }
+  
+  /* 套餐部分间距 */
+  .packages {
+    padding: var(--spacing-3xl) 0;
+  }
+  
+  .package-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  /* 质量保证间距 */
+  .quality {
+    padding: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+  }
+  
+  .quality-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .quality-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: var(--spacing-xl);
+  }
+  
+  /* 推荐部分间距 */
+  .testimonials {
+    padding: var(--spacing-3xl) 0;
+  }
+  
+  .testimonial-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .testimonial-content {
+    flex: 3;
+    padding-right: var(--spacing-2xl);
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+  }
+  
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: var(--spacing-md);
+  }
+  
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
