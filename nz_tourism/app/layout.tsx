@@ -1,7 +1,7 @@
 // nz_tourism/app/layout.tsx
 import { Metadata } from 'next'
 import './globals.css'          // 保留精简版
-import '../styles/index.css'    // 新的主入口文件     // 🆕 添加新的测试文件
+import '@/styles/index.css'    // 新的主入口文件     // 🆕 添加新的测试文件
 import ClientProviders from '../components/ClientProviders'
 
 export const metadata: Metadata = {

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import ProfileForm from './ProfileForm'
 import PasswordForm from './PasswordForm'
 import PreferencesForm from './PreferencesForm'
-import '../style/profile.css'
+import '@/styles/pages/profile.css'
 import Navbar from '../../components/Navbar'
 import { useSession } from 'next-auth/react'
 

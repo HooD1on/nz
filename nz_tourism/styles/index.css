@@ -12,7 +12,7 @@
 @import './components/card.css';
 
 /* 页面样式 */
-@import './pages/home.css';
+@import './pages/home/index.css';
 /* 全局样式 */
 body {
   padding-top: 70px; /* 为固定导航栏留出空间 */

@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { blogService, BlogPost, BlogComment } from '@/services/blogService';
-import '@/styles/blog-detail.css';
+import '@/styles/pages/blog-detail.css';
 
 export default function BlogDetailPage() {
   const params = useParams();

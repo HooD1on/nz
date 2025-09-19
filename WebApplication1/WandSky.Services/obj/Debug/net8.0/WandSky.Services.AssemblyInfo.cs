@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WandSky.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2665841933c9085568efba4b826e6a9184ebf6f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73264d60a39ea653bc0ee6272e49053033e21609")]
 [assembly: System.Reflection.AssemblyProductAttribute("WandSky.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WandSky.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

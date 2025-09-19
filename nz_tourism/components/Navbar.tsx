@@ -7,8 +7,6 @@ import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 
-
-
 interface NavbarProps {
   transparent?: boolean
 }
@@ -21,7 +19,6 @@ export default function Navbar({ transparent = true }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [showUserDropdown, setShowUserDropdown] = useState(false)
 
-  // 检测滚动状态
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -33,24 +30,21 @@ export default function Navbar({ transparent = true }: NavbarProps) {
     }
   }, [transparent])
 
-  // 判断是否需要透明导航栏
   const shouldBeTransparent = transparent && !isScrolled && pathname === '/'
-  
-  // 导航链接配置
+
   const navLinks = [
     { href: '/', label: '首页' },
     { href: '/destinations', label: '目的地' },
     { href: '/packages', label: '旅游套餐' },
     { href: '/blog', label: '旅游博客' },
-    { href: '/about', label: '关于我们' }
+    { href: '/about', label: '关于我们' },
   ]
 
-  // 用户菜单配置
   const userMenuItems = [
     { href: '/profile', label: '个人资料', icon: '👤' },
     { href: '/my-bookings', label: '我的预订', icon: '📋' },
     { href: '/wishlist', label: '我的收藏', icon: '❤️' },
-    { href: '/settings', label: '设置', icon: '⚙️' }
+    { href: '/settings', label: '设置', icon: '⚙️' },
   ]
 
   const handleSignOut = async () => {
@@ -66,38 +60,73 @@ export default function Navbar({ transparent = true }: NavbarProps) {
     }
   }
 
+  const navbarClasses = [
+    'navbar',
+    shouldBeTransparent ? 'navbar--transparent' : 'navbar--solid',
+    isScrolled ? 'navbar--scrolled' : '',
+    status === 'loading' ? 'navbar--loading' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const mobileMenuClasses = [
+    'navbar__mobile-menu',
+    isMobileMenuOpen ? 'navbar__mobile-menu--open' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const mobileToggleClasses = [
+    'navbar__mobile-toggle',
+    isMobileMenuOpen ? 'navbar__mobile-toggle--open' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const handleMobileNavItem = (action?: () => void) => {
+    setIsMobileMenuOpen(false)
+    if (action) {
+      action()
+    }
+  }
+
   return (
-    <nav className={`navbar ${shouldBeTransparent ? 'transparent' : 'solid'}`}>
-      <div className="navbar-container">
-        {/* Logo */}
-        <Link href="/" className="navbar-logo">
-          <span className="logo-text">WandSky</span>
+    <nav className={navbarClasses}>
+      <div className="navbar__container">
+        <Link href="/" className="navbar__logo">
+          <span className="navbar__logo-text">WandSky</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="navbar-menu desktop">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`navbar-link ${pathname === link.href ? 'active' : ''}`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="navbar__menu navbar__menu--desktop">
+          {navLinks.map((link) => {
+            const linkClasses = [
+              'navbar__link',
+              pathname === link.href ? 'navbar__link--active' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')
+
+            return (
+              <Link key={link.href} href={link.href} className={linkClasses}>
+                {link.label}
+              </Link>
+            )
+          })}
         </div>
 
-        {/* User Actions */}
-        <div className="navbar-actions">
+        <div className="navbar__actions">
           {status === 'loading' ? (
-            <div className="loading-indicator">
-              <div className="loading-spinner"></div>
+            <div className="navbar__loading-indicator">
+              <div className="navbar__loading-spinner" />
             </div>
           ) : session ? (
-            <div className="user-menu">
+            <div className="navbar__user-menu">
               <button
+                type="button"
                 onClick={() => setShowUserDropdown(!showUserDropdown)}
-                className="user-button"
+                className="navbar__user-button"
+                aria-haspopup="menu"
+                aria-expanded={showUserDropdown}
               >
                 {session.user?.image ? (
                   <Image
@@ -105,529 +134,152 @@ export default function Navbar({ transparent = true }: NavbarProps) {
                     alt="用户头像"
                     width={32}
                     height={32}
-                    className="user-avatar"
+                    className="navbar__user-avatar"
                   />
                 ) : (
-                  <div className="user-avatar-placeholder">
+                  <div className="navbar__user-avatar-placeholder">
                     {session.user?.name?.charAt(0) || 'U'}
                   </div>
                 )}
-                <span className="user-name">{session.user?.name}</span>
-                <svg className="chevron-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="navbar__user-name">{session.user?.name}</span>
+                <svg className="navbar__chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
 
               {showUserDropdown && (
-                <div className="user-dropdown">
-                  <div className="dropdown-header">
-                    <div className="user-info">
-                      <span className="user-display-name">{session.user?.name}</span>
-                      <span className="user-email">{session.user?.email}</span>
+                <div className="navbar__dropdown">
+                  <div className="navbar__dropdown-header">
+                    <div className="navbar__user-info">
+                      <span className="navbar__user-display-name">{session.user?.name}</span>
+                      <span className="navbar__user-email">{session.user?.email}</span>
                     </div>
                   </div>
-                  
-                  <div className="dropdown-divider"></div>
-                  
-                  <div className="dropdown-menu">
+
+                  <div className="navbar__dropdown-divider" />
+
+                  <div className="navbar__dropdown-menu">
                     {userMenuItems.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="dropdown-item"
+                        className="navbar__dropdown-item"
                         onClick={() => setShowUserDropdown(false)}
                       >
-                        <span className="item-icon">{item.icon}</span>
-                        <span className="item-label">{item.label}</span>
+                        <span className="navbar__dropdown-icon">{item.icon}</span>
+                        <span className="navbar__dropdown-label">{item.label}</span>
                       </Link>
                     ))}
                   </div>
-                  
-                  <div className="dropdown-divider"></div>
-                  
+
+                  <div className="navbar__dropdown-divider" />
+
                   <button
+                    type="button"
                     onClick={handleSignOut}
-                    className="dropdown-item logout-item"
+                    className="navbar__dropdown-item navbar__dropdown-item--logout"
                   >
-                    <span className="item-icon">🚪</span>
-                    <span className="item-label">退出登录</span>
+                    <span className="navbar__dropdown-icon">🚪</span>
+                    <span className="navbar__dropdown-label">退出登录</span>
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            <div className="auth-buttons">
-              <button onClick={handleLogin} className="login-button">
+            <div className="navbar__auth-group">
+              <button
+                type="button"
+                onClick={handleLogin}
+                className="navbar__auth-btn navbar__auth-btn--outline"
+              >
                 登录
               </button>
-              <Link href="/auth" className="signup-button">
+              <Link href="/auth" className="navbar__auth-btn">
                 注册
               </Link>
             </div>
           )}
 
-          {/* Mobile Menu Toggle */}
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="mobile-menu-toggle"
+            className={mobileToggleClasses}
+            aria-expanded={isMobileMenuOpen}
+            aria-label="切换导航菜单"
           >
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
+            <span className="navbar__mobile-toggle-line" />
+            <span className="navbar__mobile-toggle-line" />
+            <span className="navbar__mobile-toggle-line" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="mobile-menu">
-          <div className="mobile-menu-content">
-            {navLinks.map((link) => (
+      <div className={mobileMenuClasses}>
+        <div className="navbar__mobile-content">
+          {navLinks.map((link) => {
+            const mobileLinkClasses = [
+              'navbar__mobile-link',
+              pathname === link.href ? 'navbar__mobile-link--active' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')
+
+            return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                className={mobileLinkClasses}
+                onClick={() => handleMobileNavItem()}
               >
                 {link.label}
               </Link>
-            ))}
-            
-            <div className="mobile-menu-divider"></div>
-            
-            {session ? (
-              <>
-                {userMenuItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="mobile-menu-link"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="mobile-item-icon">{item.icon}</span>
-                    {item.label}
-                  </Link>
-                ))}
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false)
-                    handleSignOut()
-                  }}
-                  className="mobile-menu-link logout"
-                >
-                  <span className="mobile-item-icon">🚪</span>
-                  退出登录
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false)
-                    handleLogin()
-                  }}
-                  className="mobile-menu-link"
-                >
-                  登录
-                </button>
+            )
+          })}
+
+          <div className="navbar__mobile-divider" />
+
+          {session ? (
+            <>
+              {userMenuItems.map((item) => (
                 <Link
-                  href="/auth"
-                  className="mobile-menu-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  key={item.href}
+                  href={item.href}
+                  className="navbar__mobile-link"
+                  onClick={() => handleMobileNavItem(() => setShowUserDropdown(false))}
                 >
-                  注册
+                  <span className="navbar__mobile-icon">{item.icon}</span>
+                  {item.label}
                 </Link>
-              </>
-            )}
-          </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => handleMobileNavItem(handleSignOut)}
+                className="navbar__mobile-link navbar__mobile-link--logout"
+              >
+                <span className="navbar__mobile-icon">🚪</span>
+                退出登录
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() => handleMobileNavItem(handleLogin)}
+                className="navbar__mobile-link"
+              >
+                登录
+              </button>
+              <Link
+                href="/auth"
+                className="navbar__mobile-link"
+                onClick={() => handleMobileNavItem()}
+              >
+                注册
+              </Link>
+            </>
+          )}
         </div>
-      )}
-
-      <style jsx>{`
-        .navbar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 1000;
-          transition: all 0.3s ease;
-          padding: 0;
-        }
-
-        .navbar.transparent {
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(10px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar.solid {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          border-bottom: 1px solid #e5e7eb;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 16px 24px;
-        }
-
-        .navbar-logo {
-          text-decoration: none;
-          font-size: 1.75rem;
-          font-weight: 700;
-          color: ${shouldBeTransparent ? 'white' : '#3b82f6'};
-          transition: color 0.3s ease;
-        }
-
-        .navbar-logo:hover {
-          color: ${shouldBeTransparent ? '#f0f9ff' : '#2563eb'};
-        }
-
-        .logo-text {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .navbar.transparent .logo-text {
-          -webkit-text-fill-color: white;
-        }
-
-        .navbar-menu.desktop {
-          display: flex;
-          align-items: center;
-          gap: 32px;
-        }
-
-        .navbar-link {
-          text-decoration: none;
-          font-weight: 500;
-          color: ${shouldBeTransparent ? 'rgba(255, 255, 255, 0.9)' : '#374151'};
-          transition: color 0.3s ease;
-          position: relative;
-        }
-
-        .navbar-link:hover,
-        .navbar-link.active {
-          color: ${shouldBeTransparent ? 'white' : '#3b82f6'};
-        }
-
-        .navbar-link.active::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: ${shouldBeTransparent ? 'white' : '#3b82f6'};
-          border-radius: 1px;
-        }
-
-        .navbar-actions {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
-
-        .loading-indicator {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 32px;
-          height: 32px;
-        }
-
-        .loading-spinner {
-          width: 20px;
-          height: 20px;
-          border: 2px solid ${shouldBeTransparent ? 'rgba(255, 255, 255, 0.3)' : '#e5e7eb'};
-          border-top: 2px solid ${shouldBeTransparent ? 'white' : '#3b82f6'};
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        .user-menu {
-          position: relative;
-        }
-
-        .user-button {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 8px 12px;
-          border-radius: 8px;
-          transition: background-color 0.2s;
-          color: ${shouldBeTransparent ? 'white' : '#374151'};
-        }
-
-        .user-button:hover {
-          background: ${shouldBeTransparent ? 'rgba(255, 255, 255, 0.1)' : '#f9fafb'};
-        }
-
-        .user-avatar {
-          border-radius: 50%;
-          object-fit: cover;
-        }
-
-        .user-avatar-placeholder {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: ${shouldBeTransparent ? 'rgba(255, 255, 255, 0.2)' : '#e5e7eb'};
-          color: ${shouldBeTransparent ? 'white' : '#6b7280'};
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          font-size: 14px;
-        }
-
-        .user-name {
-          font-weight: 500;
-          max-width: 120px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        .chevron-icon {
-          width: 16px;
-          height: 16px;
-          transition: transform 0.2s;
-        }
-
-        .user-dropdown {
-          position: absolute;
-          top: 100%;
-          right: 0;
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-          border: 1px solid #e5e7eb;
-          min-width: 200px;
-          margin-top: 8px;
-          z-index: 1001;
-        }
-
-        .dropdown-header {
-          padding: 16px;
-        }
-
-        .user-display-name {
-          display: block;
-          font-weight: 600;
-          color: #111827;
-          margin-bottom: 2px;
-        }
-
-        .user-email {
-          display: block;
-          font-size: 0.875rem;
-          color: #6b7280;
-        }
-
-        .dropdown-divider {
-          height: 1px;
-          background: #e5e7eb;
-          margin: 0 8px;
-        }
-
-        .dropdown-menu {
-          padding: 8px 0;
-        }
-
-        .dropdown-item {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 8px 16px;
-          color: #374151;
-          text-decoration: none;
-          transition: background-color 0.2s;
-          border: none;
-          background: none;
-          width: 100%;
-          cursor: pointer;
-        }
-
-        .dropdown-item:hover {
-          background: #f9fafb;
-        }
-
-        .item-icon {
-          font-size: 16px;
-          width: 16px;
-          text-align: center;
-        }
-
-        .item-label {
-          font-weight: 500;
-        }
-
-        .logout-item {
-          color: #ef4444;
-        }
-
-        .logout-item:hover {
-          background: #fef2f2;
-        }
-
-        .auth-buttons {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .login-button {
-          background: none;
-          border: 1px solid ${shouldBeTransparent ? 'rgba(255, 255, 255, 0.5)' : '#d1d5db'};
-          color: ${shouldBeTransparent ? 'white' : '#374151'};
-          padding: 8px 16px;
-          border-radius: 6px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .login-button:hover {
-          background: ${shouldBeTransparent ? 'rgba(255, 255, 255, 0.1)' : '#f9fafb'};
-          border-color: ${shouldBeTransparent ? 'white' : '#9ca3af'};
-        }
-
-        .signup-button {
-          background: ${shouldBeTransparent ? 'white' : '#3b82f6'};
-          color: ${shouldBeTransparent ? '#3b82f6' : 'white'};
-          padding: 8px 16px;
-          border-radius: 6px;
-          font-weight: 500;
-          text-decoration: none;
-          transition: all 0.2s;
-        }
-
-        .signup-button:hover {
-          background: ${shouldBeTransparent ? '#f8f9ff' : '#2563eb'};
-          transform: translateY(-1px);
-        }
-
-        .mobile-menu-toggle {
-          display: none;
-          flex-direction: column;
-          gap: 4px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 8px;
-        }
-
-        .hamburger-line {
-          width: 24px;
-          height: 2px;
-          background: ${shouldBeTransparent ? 'white' : '#374151'};
-          border-radius: 1px;
-          transition: all 0.3s;
-        }
-
-        .mobile-menu {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: white;
-          border-bottom: 1px solid #e5e7eb;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .mobile-menu-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px 24px;
-        }
-
-        .mobile-menu-link {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 12px 0;
-          color: #374151;
-          text-decoration: none;
-          font-weight: 500;
-          border: none;
-          background: none;
-          width: 100%;
-          cursor: pointer;
-          border-bottom: 1px solid #f3f4f6;
-        }
-
-        .mobile-menu-link:hover,
-        .mobile-menu-link.active {
-          color: #3b82f6;
-        }
-
-        .mobile-menu-link.logout {
-          color: #ef4444;
-        }
-
-        .mobile-menu-divider {
-          height: 1px;
-          background: #e5e7eb;
-          margin: 16px 0;
-        }
-
-        .mobile-item-icon {
-          font-size: 16px;
-          width: 16px;
-          text-align: center;
-        }
-
-        /* 移动端样式 */
-        @media (max-width: 768px) {
-          .navbar-menu.desktop {
-            display: none;
-          }
-
-          .mobile-menu-toggle {
-            display: flex;
-          }
-
-          .mobile-menu {
-            display: block;
-          }
-
-          .auth-buttons {
-            display: none;
-          }
-
-          .user-name {
-            display: none;
-          }
-
-          .navbar-container {
-            padding: 12px 16px;
-          }
-        }
-
-        /* 点击外部关闭下拉菜单 */
-        @media (min-width: 769px) {
-          .mobile-menu {
-            display: none !important;
-          }
-        }
-      `}</style>
+      </div>
     </nav>
   )
 }

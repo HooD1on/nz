@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import '../../../styles/components/button.css';
+import '@/styles/components/button.css';
 
 interface BookingDetails {
   id: string;

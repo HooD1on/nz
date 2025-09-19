@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const packages = [
   {
@@ -44,7 +43,7 @@ const SpecialPackages = () => {
               <h3 className="package-title">{pkg.title}</h3>
               <p className="package-name">{pkg.name}</p>
               <p className="package-desc">{pkg.description}</p>
-              <Link href={`/packages/${pkg.id}`} className="btn">
+              <Link href={`/packages/${pkg.id}`} className="btn btn--outline">
                 Learn More
               </Link>
             </div>
@@ -56,3 +55,4 @@ const SpecialPackages = () => {
 };
 
 export default SpecialPackages; 
+

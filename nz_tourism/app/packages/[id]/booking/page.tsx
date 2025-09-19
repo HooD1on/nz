@@ -9,7 +9,7 @@ import { getStripe } from '../../../../lib/stripe';
 import PaymentForm from '../../../../components/payment/PaymentForm';
 import { BookingFormData } from '../../../../types/booking';
 import { Package } from '../../../../types/package';
-import '../../../../app/style/booking.css';
+import '@/styles/pages/booking.css';
 
 // 模拟套餐数据
 const packages: { [key: string]: Package } = {

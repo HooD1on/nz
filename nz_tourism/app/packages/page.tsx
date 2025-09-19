@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Package } from '../../types/package';
-import '../../styles/packages.css';
+import '@/styles/pages/packages.css';
 
 // 模拟套餐数据
 const allPackages: Package[] = [

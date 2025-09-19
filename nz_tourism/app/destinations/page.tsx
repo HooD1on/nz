@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import DestinationFilter from '../../components/destination/DestinationFilter';
-import '../../styles/destinations.css';
+import '@/styles/pages/destinations.css';
 
 // 新西兰热门目的地数据
 const popularDestinations = [

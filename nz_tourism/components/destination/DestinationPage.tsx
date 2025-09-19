@@ -12,7 +12,7 @@ import DestinationMap from './DestinationMap'; // 🔥 添加地图组件导入
 import RelatedPackages from './RelatedPackages';
 import DestinationAction from './DestinationAction';
 import ReviewSection from './ReviewSection';
-import '../../styles/destination.css';
+import '@/styles/pages/destination.css';
 
 interface DestinationPageProps {
   destination: {

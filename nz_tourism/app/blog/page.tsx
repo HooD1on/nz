@@ -7,7 +7,7 @@ import BlogFilter from '@/components/blog/BlogFilter';
 import BlogCard from '@/components/blog/BlogCard';
 import Pagination from '@/components/blog/Pagination';
 import { blogService, BlogPost } from '@/services/blogService';
-import '@/styles/blog.css';
+import '@/styles/pages/blog.css';
 
 interface BlogSearchParams {
   keyword?: string;

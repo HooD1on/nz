@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import '../style/auth.css'
+import '@/styles/pages/auth.css'
 import { signIn } from 'next-auth/react'
 
 interface ForgotPasswordFormProps {

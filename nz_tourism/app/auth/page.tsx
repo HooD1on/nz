@@ -8,7 +8,7 @@ import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import ForgotPasswordForm from './ForgotPasswordForm'
 import ResetPasswordForm from './ResetPasswordForm'
-import '../style/auth.css'
+import '@/styles/pages/auth.css'
 import { signIn } from 'next-auth/react'
 
 
